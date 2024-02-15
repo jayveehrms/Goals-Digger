@@ -43,6 +43,9 @@
 .navBar ul li {
     padding: 10px 60px; 
     position: relative;
+    height: 20px;
+    width: 130px;
+    border: solid;
 
 }
 
@@ -58,11 +61,10 @@
     letter-spacing: 1px;
     font-size: 16px;
 
-
 }
 
-.navBar ul li::after {
-    content:'';
+.navBar ul li:hover {
+    background-color: aqua;
 
 }
 
