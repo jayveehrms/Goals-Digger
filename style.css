@@ -45,7 +45,6 @@
     position: relative;
     height: 20px;
     width: 130px;
-    border: solid;
 
 }
 
@@ -59,13 +58,16 @@
     color: black;
     text-decoration: none;
     letter-spacing: 1px;
-    font-size: 16px;
+    font-size: 16px; 
 
 }
 
-.navBar ul li:hover {
-    background-color: aqua;
+.navBar ul li a:hover {
+    color: white;
+    background-color: rgb(18, 44, 77);
+    padding: 20px 0px;
 
 }
+
 
 
