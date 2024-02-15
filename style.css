@@ -110,11 +110,12 @@
 
 .slider-preview .ember-preview-container .slide .image-slider {
     flex: 1 1 500px;
+    width: 820px;
     overflow: hidden;
     z-index: 2;
-    position: absolute;
-    right: 130px;
-    top: 290px;
+    position: relative;
+    left: 730px;
+    top: -50px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 20px black;
@@ -125,7 +126,7 @@
     width: 820px;
     height: 500px;
     margin-bottom: -10px;
-    animation: sliderImage .3s linear;
+    animation: sliderImage .4s linear;
 
 }
 
@@ -140,10 +141,14 @@
 .slider-preview .ember-preview-container .slide .slide-content h3 {
     font-size: 35px;
     color: white;
+    position: relative;
+    top: 240px;
 
 }
 
 .slider-preview .ember-preview-container .slide .slide-content p {
+    position: relative;
+    top: 240px;
     font-size: 20px;
     width: 700px;
     color: white;
@@ -152,6 +157,8 @@
 }
 
 .slider-preview .ember-preview-container .slide .slide-content .slide-btn {
+    position: relative;
+    top: 240px;
     margin-top: 10px;
     display: inline-block;
     background: black;
@@ -167,13 +174,13 @@
 
 }
 
-.slider-preview .ember-preview-container.active {
-    display: block;
+.slider-preview .ember-preview-container {
+    display: none;
 
 }
 
-.slider-preview .ember-preview-container {
-    display: none;
+.slider-preview .ember-preview-container.active {
+    display: block;
 
 }
 
