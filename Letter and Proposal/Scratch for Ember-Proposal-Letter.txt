@@ -1,0 +1,62 @@
+Development of Ember Transport Service's Dynamic Website
+
+Company background
+
+ - About the Company // Ember Transport Services, established in 2016 by Mr. Moises Simyunn, has established itself as a reputable private transportation provider serving the National Capital Region. Our customer base encompasses a diverse range of clients, including corporate entities and individuals, reflecting our ability to cater to various transportation needs. Over the span of eight years, we have maintained an unwavering commitment to delivering exceptional service at competitive rates. As we continue to evolve, Ember Transport Services remains dedicated to setting industry standards for excellence. Join us on our journey, where each ride represents our commitment to quality and customer satisfaction.
+
+ - The Company Team and Leadership
+
+ - Staffs
+
+Executive Summary
+
+ - Problem Overview // Ember Transport Services, operating successfully within the National Capital Region, faces a challenge due to the lack of a dynamic website. Without an online presence, the company misses out on opportunities to attract and engage potential clients in the digital realm. Competitors with robust websites may be capturing market share and establishing credibility more effectively. A well-designed website could showcase Ember Transport Services' unique value propositions, such as competitive pricing and exceptional service quality, to a broader audience. Addressing this issue by developing a user-friendly website could unlock new growth opportunities and enhance competitiveness in the market.
+
+ - Proposed Solution or Objectives // To address the challenge posed by the absence of a dynamic website, Ember Transport Services aims to develop and launch a user-friendly and informative online platform. This website will serve as a central hub for clients to discover the company's services, and booking procedures easily. Additionally, the website will highlight Ember Transport Services' unique value propositions, such as  exceptional service quality, and reliability, to differentiate the company from competitors. Through the implementation of search engine optimization (SEO) techniques and digital marketing strategies, the objective is to increase online visibility and attract a larger audience of potential clients. Furthermore, the website will incorporate features for online booking and customer inquiries to streamline the booking process and enhance customer convenience.
+
+Scope of Work
+	
+ - Project scope //
+Dynamic Website Development:
+
+Designing and developing a modern, user-friendly website for Ember Transport Services with interactive elements and dynamic features.
+Content Creation:
+
+Creating and managing engaging content including service descriptions, pricing details, company information, and client testimonials to captivate visitors and convey the brand's message effectively.
+Responsive Design:
+
+Implementing responsive design techniques to ensure the website seamlessly adapts to various devices and screen sizes, providing an optimal viewing experience for all users.
+Contact Form:
+
+Incorporating a user-friendly contact form to facilitate communication between Ember Transport Services and its clients, enabling seamless interaction and inquiry management.
+Basic SEO:
+
+Applying fundamental search engine optimization strategies to enhance the website's visibility and ranking on search engines, improving its online presence and attracting more traffic.
+Security Awareness:
+
+Integrating robust security measures to safeguard the website from potential threats such as cyberattacks, data breaches, and malware, ensuring the protection of sensitive information and user privacy.
+Testing and Maintenance:
+
+Conducting comprehensive testing to identify and rectify any bugs, errors, or usability issues before the website's launch, followed by regular maintenance to keep the website updated, secure, and functioning optimally.
+
+Timeline 
+
+• Project Planning (Days 1-3):
+	• Gather client requirements and plan the website structure.
+	• Create a sitemap outlining the website's structure and navigation.
+• Design (Days 4-10):
+	• Design mockups: Create visual representations of the website's interface.
+	• Choose color schemes, typography, and branding elements.
+	• Make changes based on client feedback.
+• Development (Days 11-20):
+	• Build the website and add features.
+	• Write content and add it to the site.
+• Testing (Days 21-25):
+	• Perform cross-browser and cross-device testing to ensure compatibility.
+	• Fix any problems found.
+• Client Review (Days 26-28):
+	• Show the website to the client for feedback.
+	• Make final changes based on their suggestions.
+• Deployment (Days 29-30):
+	• Configure the production server and domain settings.
+	• Perform final checks to ensure everything is functioning correctly.

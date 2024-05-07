@@ -1,0 +1,13 @@
+
+.booking_system-container{
+    width: 100%;
+    min-height: 80vh;
+    padding: 50px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,1fr);
+}
