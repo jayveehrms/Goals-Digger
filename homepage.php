@@ -172,7 +172,7 @@
             </div>
         </div>
     </section>
-    <footer>
+    <footer className="footer">
         <div class="footer-container">
             <h3>Ember Transport Services</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et perspiciatis numquam minus dignissimos quisquam nihil!</p>

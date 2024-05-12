@@ -1,13 +1,95 @@
-
+.booking{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .booking_system-container{
     width: 100%;
-    min-height: 80vh;
-    padding: 50px;
+    padding: 50px 20px;
     position: relative;
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(2,1fr);
+
 }
+.booking-form{
+   padding: 8px 15px;
+    border: 1px solid #7c8a972a;
+    color: #7c8a97;
+    width: 100%;
+    margin: 8px 10px;
+}
+input, select{
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.booking-form_container{
+    display: flex;
+}
+/* Booking Button */
+.book-btn{
+    margin-top: 15px;
+    padding: 10px 20px;
+    color:  white;
+    font-weight: 400;
+    background:#fe5b3d;
+    border-radius:6px;
+    width: auto;
+    transition: 0.8s;
+}
+.book-btn:hover{
+    background:#4169E1;
+}
+
+/* Car Info Container */
+
+.booking_services-container{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 50px 20px;
+ }
+ .booking_services-container .box{
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 1px 4px 41px rgba(0, 0,0,0.1);
+    
+ }
+ .booking_services-container .box .box-img{
+    width: 100%;
+    height: 200px;
+    margin: 13px;
+    display: flex;
+    justify-content: center;
+ }
+ .booking_services-container .box .box-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: center; 
+  }
+  
+  .booking_services-container .booking_car_info-container
+  .car_info-container-properties{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .booking_services-container .booking_car_info-container
+  .car_name{
+    text-align: center;
+  }
+
+  .car_info-container-properties .car_properties{
+    margin-top: 15px;
+    padding: 10px 20px;
+    color:  white;
+    background:#4169E1;
+    border-radius:6px;
+    width: 130px;
+    text-align: center;
+  }
