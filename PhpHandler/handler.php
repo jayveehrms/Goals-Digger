@@ -9,10 +9,12 @@
             $userName = mysqli_real_escape_string($conn, $_POST['fName']);
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $mobileNum = mysqli_real_escape_string($conn, $_POST['mobileNum']);
-            $pVehicle = mysqli_real_escape_string($conn, $_POST['bf-vehicle']);;
-            $pLocation = mysqli_real_escape_string($conn, $_POST['pLocation']);;
-            $destination = mysqli_real_escape_string($conn, $_POST['destination']);;
-            $travel_date_time = mysqli_real_escape_string($conn, $_POST['tDateAndTime']);;
+            $pVehicle = mysqli_real_escape_string($conn, $_POST['bf-vehicle']);
+            $pLocation = mysqli_real_escape_string($conn, $_POST['pLocation']);
+            $destination = mysqli_real_escape_string($conn, $_POST['destination']);
+            $time = mysqli_real_escape_string($conn, $_POST['date']);
+            $date = mysqli_real_escape_string($conn, $_POST['time']);
+            $travel_date_time = $date . $time;
             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $timestamp = date('Y-m-d H:i:s');
 

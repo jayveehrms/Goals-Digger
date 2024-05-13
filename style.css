@@ -16,6 +16,12 @@
     --gradient:linear-gradient( #fe5b3d , #ffac38);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 html::-webkit-scrollbar{
     width:  0.3rem;
 }
@@ -340,3 +346,4 @@ color: #fff;
         color: #fe5b3d;
         font-weight: 200;
     }
+    
