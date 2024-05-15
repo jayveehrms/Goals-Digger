@@ -1,0 +1,431 @@
+/* Login Button */
+
+/* CSS */
+#show-login{
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+#show-login:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+#show-login:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+/* Modal Style */
+.wrapper{
+    margin: 0 auto;
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: -1;
+    }
+
+    /* Login Popup  */
+    .login-popup{
+    position: absolute;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    opacity: 0;
+    display: flex;
+    background: #ffffff;
+    box-shadow: 0 0 5px #999999;
+    }
+
+    .login-popup.active {
+        z-index: 2;
+        position: fixed;
+        opacity: 1;
+        transition: opacity 200ms ease-in-out 0ms;
+    }
+
+      .dimmed {
+        opacity: 0.2;
+        transition: opacity 200ms ease-in-out;
+      }
+    
+/* Login close button  */
+.col-right #close-btn {
+  position: absolute;
+  top: -50px;  
+  right: -20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  max-width: 30px;
+}
+
+/* Signup close button  */
+.col-left #signup-close-btn {
+  position: absolute;
+  top: -50px;  
+  left: -20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  max-width: 30px;
+}
+
+/* Login style */
+.login .col-left,
+.login .col-right{
+padding: 30px;
+display: flex;
+}
+
+
+.login .col-left{
+  width: 60%;
+  clip-path: polygon(0 0, 0% 100%, 100% 0 );
+  background: #c15b1c;
+  }
+
+  .login .col-right{
+  padding: 60px 30px;
+  width: 50%;
+  margin-left: -10%;
+  }
+
+  
+  
+  @media(max-width: 575px){
+      .login .login-popup{
+      flex-direction: column;
+      box-shadow: none;
+      }
+      .login .col-left,
+      .login .col-right{
+      width: 100%;
+      margin: 0;
+      clip-path: none;
+      }
+      .login .col-right{
+      padding: 30px;
+      }
+      
+      }
+
+      
+      .login .login-text{
+      position: relative;
+      width: 100%;
+      color: #ffffff;
+      }
+
+      .login .login-text h2{
+      margin: 0 0 15px 0;
+      font-size: 30px;
+      font-weight: 700;
+      }
+
+      .login .login-text p{
+      margin: 0 0 20px 0;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+      }
+      
+      .login .login-text .btn{
+      display: inline-block;
+      font-family: poppins;
+      padding: 7px 20px;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 30px;
+      color: #ffffff;
+      outline: none;
+      border: 1px solid #ffffff;
+      box-shadow: inset 0 0 0 0 #ffffff;
+      transition: .3s;
+      }
+      
+      .login .login-text .btn:hover{
+      color:  #c15b1c;
+      box-shadow: inset 150px 0 0 0 #ffffff;
+      }
+      
+      .login .login-form{
+      position: relative;
+      width: 100%;
+      }
+      .login .login-form h2{
+      margin: 0 0 15px 0;
+      font-size: 22px;
+      font-weight: 700;
+      }
+      .login .login-form p{
+      margin: 0 0 10px 0;
+      text-align: left;
+      color: #666666;
+      font-size: 15px;
+      }
+      .login .login-form p:last-child{
+      margin: 0;
+      padding-top: 3px;
+      }
+      .login .login-form p a{
+      color: #c15b1c;
+      font-size: 14px;
+      text-decoration: none;
+      }
+      .login .login-form label {
+      display: block;
+      width: 100%;
+      margin-bottom: 2px;
+      letter-spacing: .5px;
+      }
+      .login .login-form p:last-child label{
+      width: 60%;
+      float: left;
+      }
+      .login .login-form label span{
+      color: #ff574e;
+      padding-left: 2px;
+      }
+      .login .login-form input{
+      display: block;
+      width: 100%;
+      height: 35px;
+      padding: 0 10px;
+      outline: none;
+      border: 1px solid #cccccc;
+      border-radius: 30px;
+      }
+      .login .login-form input:focus{
+      border-color: #ff574e;
+      }
+      .login .login-form button,
+      .login .login-form input[type=submit] {
+      display: inline-block;
+      width: 100%;
+      margin-top: 5px;
+      color: #c15b1c;
+      font-size: 16px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid  #c15b1c;
+      border-radius: 30px;
+      box-shadow: inset 0 0 0 0  #c15b1c;
+      transition: .3s;
+      }
+      .login .login-form button:hover,
+      .login .login-form input[type=submit]:hover{
+      color: #ffffff;
+      box-shadow: inset 250px 0 0 0  #c15b1c;
+      }
+
+       /* Signup Popup  */
+      .signup-popup{
+      position: absolute;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      opacity: 0;
+      display: flex;
+      background: #ffffff;
+      box-shadow: 0 0 5px #999999;
+      }
+  
+      .signup-popup.active {
+          z-index: 2;
+          position: fixed;
+          opacity: 1;
+          transition: opacity 200ms ease-in-out 0ms;
+      }
+
+/* Sign-up Style */
+.signup .col-left,
+.signup .col-right{
+padding: 30px;
+display: flex;
+}
+
+
+.signup .col-right{
+    width: 60%;
+    clip-path: polygon(0 0, 100% 100%, 100% 0 );
+    background: #4169E1;
+    }
+
+    .signup .col-left{
+    padding: 60px 30px;
+    width: 80%;
+    margin-right: -10%;
+    }
+    
+    
+    @media(max-width: 575px){
+        .signup .signup-popup{
+        flex-direction: column;
+        box-shadow: none;
+        }
+        .signup .col-left,
+        .signup .col-right{
+        width: 100%;
+        margin: 0;
+        clip-path: none;
+        }
+        .signup .col-right{
+        padding: 30px;
+        }
+        
+        }
+
+        .signup .signup-text{
+          display: flex;
+          position: relative;
+          width: 100%;
+          color: #ffffff;
+          align-items: flex-end;
+          flex-direction: column;
+        }
+
+        .signup .signup-text h2{
+        margin: 0 0 15px 0;
+        font-size: 30px;
+        font-weight: 700;
+        }
+
+        .signup .signup-text p{
+        margin: 0 0 20px 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+        }
+        
+        .signup .signup-text .btn{
+        display: inline-block;
+        font-family: poppins;
+        padding: 7px 20px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border-radius: 30px;
+        color: #ffffff;
+        outline: none;
+        border: 1px solid #ffffff;
+        box-shadow: inset 0 0 0 0 #ffffff;
+        transition: .3s;
+        }
+        
+        .signup .signup-text .btn:hover{
+        color:  #4169E1;
+        box-shadow: inset 150px 0 0 0 #ffffff;
+        }
+        
+        .signup .signup-form{
+        position: relative;
+        width: 100%;
+        }
+        .signup .signup-form h2{
+        margin: 0 0 15px 0;
+        font-size: 22px;
+        font-weight: 700;
+        }
+        .signup .signup-form p{
+        margin: 0 0 10px 0;
+        text-align: left;
+        color: #4169E1;
+        font-size: 15px;
+        }
+        .signup .signup-form p:last-child{
+        margin: 0;
+        padding-top: 3px;
+        }
+        .signup .signup-form p a{
+        color: #4169E1;
+        font-size: 14px;
+        text-decoration: none;
+        }
+        .signup .signup-form label {
+        display: block;
+        width: 100%;
+        margin-bottom: 2px;
+        letter-spacing: .5px;
+        }
+        .signup .signup-form p:last-child label{
+        width: 60%;
+        float: left;
+        }
+        .signup .signup-form label span{
+        color: #c15b1c;
+        padding-left: 2px;
+        }
+        .signup .signup-form input{
+        display: block;
+        width: 100%;
+          padding: 10px;
+          height: 50px;
+          border: none;
+          border-bottom: 0.5px solid #4169E1; /* Change the color and thickness as needed */
+          outline: none; /* Optional: Remove the default outline */
+          font-size: 15px;
+        }
+        .signup .signup-form input:focus{
+        border-color: #4169E1;
+        }
+        .signup .signup-form button,
+        .signup .signup-form input[type=submit] {
+        display: inline-block;
+        width: 100%;
+        margin-top: 20px;
+        color: #4169E1;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid  #4169E1;
+        border-radius: 30px;
+        box-shadow: inset 0 0 0 0  #4169E1;
+        transition: .3s;
+        }
+        .signup .signup-form button:hover,
+        .signup .signup-form input[type=submit]:hover{
+        color: #ffffff;
+        box-shadow: inset 350px 0 0 0  #4169E1;
+        }
+
+        /* Signup Form */
+        .input-container{
+          display: flex;
+        }
+
+        .icon {
+          padding: 15px;
+          background: transparent;
+          color: #555;
+          min-width: 50px;
+          text-align: center;
+          cursor: pointer;
+        }
