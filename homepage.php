@@ -1,7 +1,3 @@
-<?php 
-    include("PhpHandler\handler.php");
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +23,7 @@
             <li><a href="#">Contact</a></li>
         </ul>
         <div class="header-btn">
-            <a href="booking.php" class="book-btn">Book Now</a>
+            <a href="booking.html" class="book-btn">Book Now</a>
         </div>
     </header>
 
@@ -208,7 +204,7 @@
             </div>
         </div>
     </section>
-    <footer>
+    <footer className="footer">
         <div class="footer-container">
             <h3>Ember Transport Services</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et perspiciatis numquam minus dignissimos quisquam nihil!</p>
