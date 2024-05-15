@@ -149,6 +149,116 @@ margin: 00.5rem 0 1rem;
 section{
     padding: 50px 100px;
 }
+
+.slider-preview {
+    position: relative;
+    top: 20px;
+
+}
+
+.ember-preview-container {
+    width: 100%;
+    z-index: -1;
+
+}
+
+.slider-preview .ember-preview-container .home {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 3%;
+    padding-bottom: 70px;
+    animation: slideImage .9s ease;
+
+}
+
+@keyframes slideImage {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+}
+
+.slider-preview .ember-preview-container .home .text {
+    flex: 1 1 350px;
+    animation: slideContent .4s linear .8 backwards;
+
+}
+
+@keyframes slideContent {
+    0%{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+}
+
+.slider-preview .ember-preview-container {
+    display: none;
+
+}
+
+.slider-preview .ember-preview-container.active {
+    display: block;
+
+}
+
+.slider-preview #prev,
+.slider-preview #next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255);
+    background: rgb(25, 58, 177);
+    height: 30px;
+    width: 50px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    line-height: 20px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.1s;
+
+}
+
+.slider-preview .ember-preview-container:nth-child(2) .home {
+    background: url(Images/Cars/homepageDesign2.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    align-items: center;
+
+}
+
+.slider-preview .ember-preview-container:nth-child(3) .home {
+    background: url(Images/Cars/homepageDesign2.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    align-items: center;
+
+}
+
+.slider-preview #prev:hover,
+.slider-preview #next:hover {
+    background: rgb(255, 166, 0);
+
+}
+
+.slider-preview #prev {
+    right: 775px;
+    top: 520px;
+}
+
+.slider-preview #next {
+    right: 715px;
+    top: 520px;
+}
+
 .heading{
     text-align:center; 
 }

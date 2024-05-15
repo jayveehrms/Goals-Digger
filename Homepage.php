@@ -31,39 +31,71 @@
         </div>
     </header>
 
-    <section class="home" id="home">
-        <div class="text">
-            <h1><span>Welcome</span> to <br>Ember Transport Services</h1>
-            <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
-            <div class="home-btn">
-                <a href="#" class="learnmore">Learn More</a>
-            </div>
+    <div class="slider-preview">
+        <div class="ember-preview-container active">
+            <section class="home" id="home">
+                <div class="text">
+                    <h1><span>Welcome</span> to <br>Ember Transport Services</h1>
+                    <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
+                    <div class="home-btn">
+                        <a href="#" class="learnmore">Learn More</a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <section class="ride" id="ride"> 
-        <div class="heading">
-            <span>What are your transportation needs?</span>
-            <h1>Here are our Services</h1>
+        <div class="ember-preview-container">
+            <section class="home" id="home">
+                <div class="text">
+                    <h1><span>Welcome2</span> to <br>Ember Transport Services</h1>
+                    <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
+                    <div class="home-btn">
+                        <a href="#" class="learnmore">Learn More</a>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div  class="ride-container">
-            <div class="box">
-                <img class="bx bxs-map" src=/>
-                <h2>Staff Transportation</h2> 
-                <p>Our dedicated staff shuttle service ensures timely and efficient transportation for employees, providing a convenient and reliable commuting solution tailored to your organization's needs.</p>
-            </div>
-            <div class="box">
-                <img class="bx bxs-calendar-check" src=/>
-                <h2>Airport Transfer</h2> 
-                <p>Experience seamless airport transfers with our professional shuttle service, offering comfortable rides to and from the airport, with punctuality and customer satisfaction as our top priorities.</p>
-            </div>
-            <div class="box">
-                <img class="bx bxs-calendar-star" src=/>
-                <h2>Group Function Transportation</h2> 
-                <p>Whether it's a corporate event, team-building retreat, or special occasion, our group function transportation service delivers safe and comfortable journeys for your entire group, ensuring an enjoyable experience.</p>
-            </div>
+
+        <div class="ember-preview-container">
+            <section class="home" id="home">
+                <div class="text">
+                    <h1><span>Welcome3</span> to <br>Ember Transport Services</h1>
+                    <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
+                    <div class="home-btn">
+                        <a href="#" class="learnmore">Learn More</a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+
+        <button id="prev" onclick="prev()"><</button>
+        <button id="next" onclick="next()">></button>
+        
+    </div>
+
+        <section class="ride" id="ride"> 
+            <div class="heading">
+                <span>What are your transportation needs?</span>
+                <h1>Here are our Services</h1>
+            </div>
+            <div  class="ride-container">
+                <div class="box">
+                    <img class="bx bxs-map" src=/>
+                    <h2>Staff Transportation</h2> 
+                    <p>Our dedicated staff shuttle service ensures timely and efficient transportation for employees, providing a convenient and reliable commuting solution tailored to your organization's needs.</p>
+                </div>
+                <div class="box">
+                    <img class="bx bxs-calendar-check" src=/>
+                    <h2>Airport Transfer</h2> 
+                    <p>Experience seamless airport transfers with our professional shuttle service, offering comfortable rides to and from the airport, with punctuality and customer satisfaction as our top priorities.</p>
+                </div>
+                <div class="box">
+                    <img class="bx bxs-calendar-star" src=/>
+                    <h2>Group Function Transportation</h2> 
+                    <p>Whether it's a corporate event, team-building retreat, or special occasion, our group function transportation service delivers safe and comfortable journeys for your entire group, ensuring an enjoyable experience.</p>
+                </div>
+            </div>
+        </section>
     
     <section class="services" id="services">
         <div class="heading">
@@ -196,6 +228,9 @@
             
         </div>
     </footer>
+
+    <script src="JsFilez\SliderLogic.js"></script>
+
 </body>
 </html>
     
