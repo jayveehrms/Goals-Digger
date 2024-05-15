@@ -23,7 +23,7 @@
             <li><a href="#">Contact</a></li>
         </ul>
         <div class="header-btn">
-            <a href="booking.html" class="book-btn">Book Now</a>
+            <a href="booking.php" class="book-btn">Book Now</a>
         </div>
     </header>
 

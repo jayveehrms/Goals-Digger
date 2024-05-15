@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 <?php 
     include("PhpHandler\handler.php");
 
 ?>
 
->>>>>>> f099a4c544652707d7ef5c1f10ee5292e97e9ab9
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,75 +16,11 @@
 </head>
 <body>
     <header>
-<<<<<<< HEAD
-        <a href="index.html" class="logo">
-=======
         <a href="Homepage.php" class="logo">
->>>>>>> f099a4c544652707d7ef5c1f10ee5292e97e9ab9
             <img src="Images\Company Logo\EMBER-LOGO-1-TRANSPARENT-OUTLINED.png">
         </a>
     </header>
     <section class="booking">
-<<<<<<< HEAD
-        <div class="booking_system-container">
-            <h3>Booking Information</h3> <br>
-            <form>
-                <div class="booking-form_container">
-                    <div class="booking-form">
-                        <input required type="text" placeholder="First Name">
-                    </div>
-                    <div class="booking-form">
-                        <input required type="text" placeholder="Last Name">
-                    </div>  
-                </div>
-
-                <div class="booking-form_container">
-                    <div class="booking-form">
-                        <input required type="email" placeholder="Email">
-                    </div>
-                    <div class="booking-form">
-                        <input required type="number" placeholder="Phone Number">
-                    </div>  
-                </div>
-
-                <div class="booking-form">
-                    <select  name="bf-vehicle" required>
-                    <option value>Select vehicle</option>
-                    <option value="Toyota Alphard ">MPV | Toyota Alphard | 7 to 8 seater</option>
-                    <option value="Toyota Super Grandia Elite ">Van | Toyota Super Grandia Elite | 9 to 11 seater</option>
-                    <option value="Toyota GL Grandia ">Van | Toyota GL Grandia | 10 to 15 seater </option>
-                    <option value="Toyota Hiace ">Van | Toyota Hiace | 12 to 18 seater</option>
-                    <option value="Toyota Fortuner ">SUV | Toyota Fortuner | 7 seater</option>
-                    <option value="Toyota Innova ">SUV | Toyota Innova | 7 to 8 seater</option>
-                    <option value="Toyota Altis ">Sedan | Toyota Altis | 5 seater</option>
-                    <option value="Toyota Vios ">Sedan | Toyota Vios | 5 seater</option>
-                </select>
-                </div>
-                
-                <div class="booking-form_container">
-                    <div class="booking-form">
-                        <input required type="text" placeholder="Pickup Location">
-                    </div>
-                    <div class="booking-form">
-                        <input required type="text" placeholder="Destination">
-                    </div>
-                </div>
-                
-                <div class="booking-form_container">
-                    <div class="booking-form">
-                        <input required type="date" >
-                    </div>
-                    <div class="booking-form">
-                        <input type="time">
-                    </div>  
-                </div>
-                
-                    <input type="submit" class="book-btn" value="Reserve Now">
-                
-                
-            </form>
-        </div>
-=======
         <form method="POST">
             <div class="booking_system-container">
                 <h3>Booking Information</h3> <br>
@@ -147,7 +80,6 @@
                 
             </div>
         </form>
->>>>>>> f099a4c544652707d7ef5c1f10ee5292e97e9ab9
         
         <div class="booking_services-container">
             <div class="booking_car_info-container">
