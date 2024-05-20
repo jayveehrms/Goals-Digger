@@ -15,11 +15,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-        <a href="homepage.php" class="logo">
-            <img src="Images\Company Logo\EMBER-LOGO-1-TRANSPARENT-OUTLINED.png">
-        </a>
-    </header>
+
+    <?php include("UI\header.php"); ?>
+
     <section class="booking">
         <form method="POST">
             <div class="booking_system-container">
