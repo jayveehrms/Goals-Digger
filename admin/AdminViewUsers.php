@@ -32,6 +32,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Contact</th>
+                                    <th>Loyalty Badge/s</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,6 +50,7 @@
                                         <td><?php echo $row->username; ?></td>
                                         <td><?php echo $row->email; ?></td>
                                         <td><?php echo $row->contact; ?></td>
+                                        <td><?php echo $row->loyalty_badge?></td>
                                     </tr>
                                 <?php $cnt++; } ?>
                             </tbody>

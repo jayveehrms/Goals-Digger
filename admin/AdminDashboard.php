@@ -1,5 +1,15 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
+    session_start();
+    $adminEmail = $_SESSION['adminEmail'];
+
+    /*
+        Note* 
+        next feature to add would be the loyalty for regular and new users
+        limit the amount of bookings a user can add based on their loyalty badges and status rank
+        /For other features look into our group chat or ask team members
+
+    */
 
 ?>
 <!DOCTYPE html>
@@ -40,7 +50,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending'";
+                                $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled'";
                                 $stmt = $conn->prepare($ret);
                                 $stmt->execute();
                                 $res = $stmt->get_result();
@@ -61,7 +71,13 @@
                                             <?php 
                                             if ($row->status == "Pending") { 
                                                 echo '<span class="badge badge-warning">' . $row->status . '</span>'; 
-                                            } else { 
+
+                                            } else if ($row->status == "Disapproved"){
+                                                echo '<span class="badge badge-dark">' . $row->status . '</span>';
+
+                                            } else if ($row->status == "Cancelled"){
+                                                echo '<span class="badge badge-warning">' . $row->status . '</span>';
+                                            }else { 
                                                 echo '<span class="badge badge-success">' . $row->status . '</span>'; 
                                             }
                                             ?>

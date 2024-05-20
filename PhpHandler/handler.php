@@ -18,7 +18,7 @@
             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $timestamp = date('Y-m-d H:i:s');
 
-            $sqlPending = "INSERT INTO pendingactivation (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time, verification_code, email_verified_at, time_duration)
+            $sqlPending = "INSERT INTO bookingverification (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time, verification_code, email_verified_at, time_duration)
                           VALUES ('$userName','$email','$mobileNum','$pVehicle','$pLocation','$destination','$travel_date_time','$verification_code', NULL,'$timestamp')";
 
              try{
@@ -55,7 +55,7 @@
             $email = mysqli_real_escape_string($conn, $_POST["email"]);
             $verification_code = mysqli_real_escape_string($conn, $_POST["verification_code"]);
 
-            $sqlUpdate = "UPDATE pendingactivation SET email_verified_at = NOW() WHERE email = '$email' AND verification_code = '$verification_code'";
+            $sqlUpdate = "UPDATE bookingverification SET email_verified_at = NOW() WHERE email = '$email' AND verification_code = '$verification_code'";
             $result  = mysqli_query($conn, $sqlUpdate);
     
            if (mysqli_affected_rows($conn) == 0) {
@@ -63,7 +63,7 @@
                 exit();
 
            } else {
-                $getVerifiedUser = "SELECT * FROM pendingactivation WHERE email = '$email'";
+                $getVerifiedUser = "SELECT * FROM bookingverification WHERE email = '$email'";
                 $vResult = mysqli_query($conn, $getVerifiedUser);
                 $getVal = mysqli_fetch_assoc($vResult);
 
@@ -93,7 +93,7 @@
 
     }
 
-    $delete_unverified = "DELETE FROM pendingactivation WHERE time_duration < DATE_SUB(NOW(), INTERVAL 1 DAY)";
+    $delete_unverified = "DELETE FROM bookingverification WHERE time_duration < DATE_SUB(NOW(), INTERVAL 1 DAY)";
     mysqli_query($conn, $delete_unverified);
 
 

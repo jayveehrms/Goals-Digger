@@ -95,10 +95,15 @@
 
         $sql = "SELECT * FROM bookinglist WHERE user_id='$user_id'";
         $result = mysqli_query($conn, $sql);
+        $setPVehicle = mysqli_fetch_assoc($result);
+        $getPVehicle = $setPVehicle['preferred_vehicle'];
 
         if(mysqli_num_rows($result) > 0) {
             $sql = "UPDATE bookinglist SET status='Approved' WHERE user_id='$user_id'";
             if(mysqli_query($conn, $sql)) {
+                $newVStatus = "Booked";
+                $updateVehice = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";
+                mysqli_query($conn, $updateVehice);
                 echo"<br> Booking Approved!";
 
             } else {

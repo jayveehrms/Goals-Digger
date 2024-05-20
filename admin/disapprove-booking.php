@@ -32,48 +32,53 @@
                     ?>
                     <form method ="POST"> 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                            <input type="text" readonly value="<?php echo $row->username;?>" required class="form-control" id="exampleInputEmail1" name="username">
+                            <label>Username</label>
+                            <input type="text" readonly value="<?php echo $row->username;?>" required name="username">
                         </div>
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="text" readonly class="form-control" value="<?php echo $row->email;?>" id="exampleInputEmail1" name="email">
+                            <label>Email</label>
+                            <input type="text" readonly value="<?php echo $row->email;?>" name="email">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Contact</label>
-                            <input type="text" readonly class="form-control" value="<?php echo $row->mobile_number;?>" id="exampleInputEmail1" name="contact">
+                            <label>Contact</label>
+                            <input type="text" readonly value="<?php echo $row->mobile_number;?>" name="contact">
                         </div>
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Preferred Vehicle</label>
-                            <input type="email" readonly value="<?php echo $row->preferred_vehicle;?>" class="form-control" name="prefVehicle">
+                            <label>Preferred Vehicle</label>
+                            <input type="email" readonly value="<?php echo $row->preferred_vehicle;?>" name="prefVehicle">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Pickup Location</label>
-                            <input type="email" readonly value="<?php echo $row->pickup_location;?>" class="form-control" name="pickupLoc">
+                            <label>Pickup Location</label>
+                            <input type="email" readonly value="<?php echo $row->pickup_location;?>" name="pickupLoc">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Destination</label>
-                            <input type="email" readonly value="<?php echo $row->destination;?>" class="form-control" name="destination">
+                            <label>Destination</label>
+                            <input type="email" readonly value="<?php echo $row->destination;?>" name="destination">
                         </div>
 
                     
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Booking Date</label>
-                            <input type="text" readonly value="<?php echo $row->travel_date_time;?>" class="form-control"   name="bookDate">
+                            <label>Booking Date</label>
+                            <input type="text" readonly value="<?php echo $row->travel_date_time;?>"   name="bookDate">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Booking Status</label>
-                            <input type="text" readonly value="<?php echo $row->status;?>" class="form-control" id="exampleInputEmail1"  name="bStatus">
+                            <label>Booking Status</label>
+                            <input type="text" readonly value="<?php echo $row->status;?>"  name="bStatus">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reason for Disapproval</label>
+                            <textarea name="reason"></textarea>
                         </div>
 
                         
 
-                        <button type="submit" name="delete_booking" class="btn btn-danger">Delete Booking</button>
+                        <button type="submit" name="disapprove" class="btn btn-danger">Disapprove Booking</button>
                     </form>
                     
                     <?php 
@@ -89,7 +94,7 @@
 </body>
 </html>
 <?php 
-    if(isset($_POST['delete_booking']))
+    if(isset($_POST['disapprove']))
     {
         $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
 
@@ -97,9 +102,18 @@
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) > 0) {
-            $sql = "DELETE FROM bookinglist WHERE user_id='$user_id'";
-            if(mysqli_query($conn, $sql)) {
+            $sqlUpdate = "UPDATE bookinglist SET status='Disapproved' WHERE user_id='$user_id'";
+            $rows = mysqli_fetch_assoc($result);
+            if(mysqli_query($conn, $sqlUpdate)) {
                 echo"<br> Record Deleted";
+ 
+                $to = $rows['email'];
+                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                $subject = "Booking Disapproved!";
+                $message = mysqli_real_escape_string($conn, $_POST['reason']);
+               
+                mail($to, $subject, $message, $headers);
+
 
             } else {
                 echo "Error Deleted record." . mysqli_errno($conn);
@@ -111,7 +125,6 @@
             echo "No Record Exist";
 
         }
-        mysqli_close($conn);
 
     }
 

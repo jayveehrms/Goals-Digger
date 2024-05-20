@@ -13,20 +13,20 @@
 
     <div class="side-bar">
         <div class="menu">
-            <div class="item"><a href="AdminDashboard.php"><i class="fas fa-desktop"></i>Dashboard</a></div>
+            <div class="item"><a href="UserDashBoard.php"><i class="fas fa-desktop"></i>Dashboard</a></div>
             <div class="item">
                 <a class="sub-btn"><i class="fas fa-fw fa-users"></i>My Profile<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="#" class="sub-item">View</a>
+                    <a href="UserViewProfile.php" class="sub-item">View</a>
                     <a href="#" class="sub-item">Update</a>
                 </div>
             </div>
             <div class="item">
                 <a href="#" class="sub-btn"><i class="fas fa-fw fa-book"></i>Bookings<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="#" class="sub-item">Add</a>
-                    <a href="#" class="sub-item">View</a>
-                    <a href="#" class="sub-item">Manage</a>
+                    <a href="UserBookVehicle.php" class="sub-item">Add</a>
+                    <a href="UserViewBookings.php" class="sub-item">View</a>
+                    <a href="UserManageBooking.php" class="sub-item">Manage</a>
                 </div>
             </div>
         </div>

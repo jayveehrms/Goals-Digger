@@ -41,7 +41,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending'";
+                                    $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled'";
                                     $stmt = $conn->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
@@ -62,14 +62,21 @@
                                                 <?php 
                                                 if ($row->status == "Pending") { 
                                                     echo '<span class="badge badge-warning">' . $row->status . '</span>'; 
-                                                } else { 
+                                                    
+                                                } else if ($row->status == "Disapproved"){
+                                                    echo '<span class="badge badge-dark">' . $row->status . '</span>';
+    
+                                                } else if ($row->status == "Cancelled"){
+                                                    echo '<span class="badge badge-warning">' . $row->status . '</span>';
+
+                                                }else { 
                                                     echo '<span class="badge badge-success">' . $row->status . '</span>'; 
                                                 }
                                                 ?>
                                             </td>
                                             <td>
                                                 <a href="approve-booking.php?user_id=<?php echo $row->user_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
-                                                <a href="delete-booking.php?user_id=<?php echo $row->user_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Delete</a>
+                                                <a href="disapprove-booking.php?user_id=<?php echo $row->user_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
                                             </i>
                                             </td>
                                         </tr>

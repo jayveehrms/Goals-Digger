@@ -1,3 +1,13 @@
+<?php 
+    include("PhpHandler/userRegister.php");
+    session_start();
+    include("PhpHandler/userLogin.php");
+
+    $loginError = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+    unset($_SESSION['error']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ember Transport Service</title>
     <link rel="icon" href="Images/Company Logo/EMBER-LOGO-2-TRANSPARENT.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,7 +23,7 @@
 <body>
     <header>
         <a href="#" class="logo">
-            <img src="Images/Company Logo/EMBER-LOGO-1-TRANSPARENT-OUTLINED.png" alt="Ember Logo">
+            <img src="images/Company Logo/EMBER-LOGO-1-TRANSPARENT-OUTLINED.png" alt="Ember Logo">
         </a>
         <div class="bx bx-menu" id="menu-icon"></div>
             <ul class="navbar">
@@ -236,27 +246,34 @@
         <div class="col-left">
             <div class="login-text">
                 <h2>Welcome!</h2>
-                <p>Create your account.<br>For Free!</p>
-                <a href="#" class="btn" id="signup-btn">Sign Up</a>
-            </div>
+                    <p><?php if($loginError) {?>
+                        <p>Wrong Email/Password!</p> 
+                        <?php } else { ?>
+                        <p>Create your account. For Free!</p>
+                        <?php 
+                            }
+                        ?>
+        <a href="#" class="btn" id="signup-btn">Sign Up</a>
+    </div>
         </div>
 
         <div class="col-right">
             <div class="login-form">
                 <button id="close-btn">&times;</button>
                 <h2>Login</h2>
-                <form action="">
+                <form method="POST">
                     <p>
                         <label>Email address<span>*</span></label>
-                        <input type="text" placeholder="Username or Email" required>
+                        <input type="text" placeholder="Username or Email" required name="lEmail">
                     </p>
                     <p>
                         <label>Password<span>*</span></label>
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" required name="lPassword">
                     </p>
                     <p>
-                        <input type="submit" value="Sign In">
+                        <input type="submit" value="Sign In" name="signIn" id="uLogin">
                     </p>
+                    <p id="wrongEmailPass"></p>
                     <p>
                         <a href="">Forgot password?</a>
                     </p>
@@ -274,7 +291,7 @@
             <div class="signup-form">
             <button id="signup-close-btn">&times;</button>
                 <h2>Signup</h2>
-                <form action="">
+                <form method="POST">
                     <div class="form-box">
 
                         <div class="input-container">
@@ -289,7 +306,7 @@
 
                         <div class="input-container">
                         <i class="fa fa-phone icon"></i>
-                        <input class="input-field" type="number" placeholder="Contact Number" name="username" required>
+                        <input class="input-field" type="number" placeholder="Contact Number" name="contact" required>
                         </div>
 
                         <div class="input-container">
@@ -314,7 +331,7 @@
         <div class="col-right">
             <div class="signup-text">
                 <h2>Welcome!</h2>
-                <p>Already have account?</p>
+                <p id="xPass">Already have account?</p>
                 <a href="#" id="login-btn" class="btn">Login</a>
                 </form>
             </div>
@@ -322,7 +339,7 @@
     </div>
 </div>
 
-<script src="Javascript/Login.js"></script>
+<script src="JsFilez\Login.js"></script>
 
 <!-- For View Password -->
 <script>
@@ -336,6 +353,34 @@
         input.type = "password";
       }
     })
+
+
+
+    document.querySelector(".signup-form form").addEventListener("submit", function(event) {
+        const password = document.querySelector("input[name='password']").value;
+        const confirmPassword = document.querySelector("input[name='cpass']").value;
+    
+        if (password !== confirmPassword) {
+            event.preventDefault(); 
+            document.getElementById('xPass').textContent = "Passwords don't match!";
+        }
+    });
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginError = "<?php echo $loginError; ?>";
+        if (loginError) {
+            var wrapper = document.querySelector(".wrapper.login");
+            var popup = document.querySelector(".login-popup");
+            wrapper.style.zIndex = '2';
+            wrapper.style.display = 'flex';
+            popup.classList.add("active");
+
+            
+            document.querySelectorAll('section').forEach(el => el.classList.add('dimmed'));
+
+        }
+    });
   </script>
 
 </body>

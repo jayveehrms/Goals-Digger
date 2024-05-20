@@ -1,6 +1,5 @@
 <?php
-    include("PhpHandler\handler.php");
-    include("PhpHandler\loginHandler.php");
+    include("PhpHandler\userRegister.php");
 
 ?>
 

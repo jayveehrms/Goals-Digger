@@ -28,6 +28,13 @@
                     <a href="AdminManageBookings.php" class="sub-item">Manage</a>
                 </div>
             </div>
+            <div class="item">
+                <a href="#" class="sub-btn"><i class="fas fa-fw fa-car"></i>Vehicle<i class="fas fa-angle-right dropdown"></i></a>
+                <div class="sub-menu">
+                    <a href="AdminViewVehicles.php" class="sub-item">View</a>
+                    <a href="AdminManageVehicle.php" class="sub-item">Manage</a>
+                </div>
+            </div>
         </div>
 
     </div>

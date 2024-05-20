@@ -40,30 +40,30 @@
                             $aid=$_GET['email'];
                             $ret="SELECT * FROM emberusers WHERE email=?";
                             $stmt= $conn->prepare($ret) ;
-                            $stmt->bind_param('i',$aid);
-                            $stmt->execute() ;//ok
+                            $stmt->bind_param('s',$aid);
+                            $stmt->execute() ;
                             $res=$stmt->get_result();
-                            while($row=$res->fetch_object())
-                        {
+                            while($row=$res->fetch_object()) {
+
                         ?>
                             <form method ="POST"> 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" value="<?php echo $row->username;?>" required class="form-control" id="exampleInputEmail1" name="username">
+                                    <input type="text" value="<?php echo $row->username;?>" required class="form-control" name="username">
                                 </div>
                             
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Contact</label>
-                                    <input type="text" class="form-control" value="<?php echo $row->contact;?>" id="exampleInputEmail1" name="contact">
+                                    <input type="text" class="form-control" value="<?php echo $row->contact;?>"  name="contact">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email Address</label>
-                                    <input type="text" class="form-control" value="<?php echo $row->email;?>" id="exampleInputEmail1" name="email">
+                                    <input type="text" class="form-control" value="<?php echo $row->email;?>"  name="email">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" value="<?php echo $row->password;?>" name="password" id="exampleInputPassword1">
+                                    <input type="password" class="form-control" value="<?php echo $row->password;?>" name="password" >
                                 </div>
 
                                 <button type="submit" name="updateUser" class="btn btn-success">Update User</button>

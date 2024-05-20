@@ -99,11 +99,11 @@ header{
 
 }
 /* Style for the Homepage */
-.home{
+.home {
     width: 100%;
     min-height: 80vh;
     position: relative;
-    background: url(Images/Homepage_design/HomepageDesign.jpg);
+    background: url(../images/Homepage_design/HomepageDesignblue.jpg);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
@@ -228,7 +228,7 @@ section{
 }
 
 .slider-preview .ember-preview-container:nth-child(2) .home {
-    background: url(Images/Cars/homepageDesign2.png);
+    background: url(../images/Cars/homepageDesign2.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
@@ -237,7 +237,7 @@ section{
 }
 
 .slider-preview .ember-preview-container:nth-child(3) .home {
-    background: url(Images/Cars/homepageDesign2.png);
+    background: url(../images/Cars/homepageDesign2.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
