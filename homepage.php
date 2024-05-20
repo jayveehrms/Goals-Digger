@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <?php include("UI\header.php"); ?>
+    <?php include("UI/header.php"); ?>
 
     <div class="slider-preview">
         <div class="ember-preview-container active">

@@ -228,7 +228,7 @@ section{
 }
 
 .slider-preview .ember-preview-container:nth-child(2) .home {
-    background: url(../images/Homepage_design/Homepage-cars/Slider-Vios.png);
+    background: url(../images/Cars/homepageDesign2.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
@@ -237,7 +237,7 @@ section{
 }
 
 .slider-preview .ember-preview-container:nth-child(3) .home {
-    background: url(../images/Homepage_design/Homepage-cars/Slider-Innova.png);
+    background: url(../images/Cars/homepageDesign2.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;

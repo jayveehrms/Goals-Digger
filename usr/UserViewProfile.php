@@ -2,6 +2,13 @@
     include("..\PhpHandler\DBconnect.php");
     session_start();
     $userID = $_SESSION['userID'];
+    /*
+        Note*
+        Next Feature to be added is the loyalty badges
+        enough procrastinating!
+
+    */
+
 
 ?>
 <!DOCTYPE html>
@@ -36,8 +43,8 @@
                     <li><b>Loyalty Badge/s:</b> <?php echo $row['loyalty_badge'];?></li>
                 </ul>
                 <div class="card-body">
-                    <a href="#"><i class ="fa fa-user-edit"></i> Update Profile</a>
-                    <a href="#"><i class ="fa fa-key"></i> Change Password</a>
+                    <a href="UserUpdateProfile.php"><i class ="fa fa-user-edit"></i> Update Profile</a>
+                    <a href="UserChangePassword.php"><i class ="fa fa-key"></i> Change Password</a>
                 </div>
             </div>
         <?php 

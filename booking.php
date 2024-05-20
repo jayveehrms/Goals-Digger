@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-    <?php include("UI\header.php"); ?>
+    <?php include("UI/header.php"); ?>    
 
     <section class="booking">
         <form method="POST">
@@ -108,25 +107,7 @@
 
     </section>
 
-    <footer>
-        <div class="footer-container">
-            <h3>Ember Transport Services</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et perspiciatis numquam minus dignissimos quisquam nihil!</p>
-
-            <ul class="socials">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-            </ul>
-                <div class="footer-bottom">
-                    <p>copyright &copy; 2024 Ember Transport Services Philippines. <br> designed by <span>Goals Digger</span></p>
-                </div>
-            </div>
-            
-        </div>
-    </footer>
+    <?php include("UI/footer.php"); ?>
 
 </body>
 </html>
