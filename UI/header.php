@@ -18,18 +18,18 @@
     <script src="JsFilez\Login.js"></script>
 </head>
 <body>
-    <header>
+<header>
         <a href="homepage.php" class="logo">
             <img src="images/Company Logo/EMBER-LOGO-1-TRANSPARENT-OUTLINED.png" alt="Ember Logo">
         </a>
         <div class="bx bx-menu" id="menu-icon"></div>
-            <ul class="navbar">
-                <li><a id="nav-homepage">Home</a></li>
-                <li><a id="nav-services">Services</a></li>
-                <li><a href="about.php">About us</a></li>
-                <li><a id="nav-fleet">Fleet</a></li>
-                <li><a id="nav-contact">Contact</a></li>
-            </ul>
+        <ul class="navbar">
+            <li><a id="nav-homepage">Home</a></li>
+            <li><a id="nav-services">Services</a></li>
+            <li><a href="about.php">About us</a></li>
+            <li><a id="nav-fleet">Fleet</a></li>
+            <li><a id="nav-contact">Contact</a></li>
+        </ul>
         <div class="header-btn">
             <button id="show-login">LOGIN</button>
         </div>
@@ -176,6 +176,12 @@
   </script>
 
     <!-- Navigation JS -->
-    <script src="JsFilez\Nav.js"></script>
+    <script src="JsFilez/Nav.js"></script>
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            document.querySelector('.navbar').classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>
