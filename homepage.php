@@ -87,14 +87,14 @@
             <h1>Explore our Fleet</h1>
         </div>
         <div class="services-container">
-            <div class="box">
-                <div class="box-img">
-                    <img src="Images/Cars/sample-car_Toyota_Alphard.png" alt="Toyota Alphard">
+        <div class="box">
+            <div class="box-img">
+                <img src="Images/Cars/sample-car_Toyota_Alphard.png" alt="Toyota Alphard">
                 </div>
                 <h3>Toyota Alphard</h3>
                 <p>Experience unparalleled luxury and sophistication in the Toyota Alphard, featuring opulent interiors, advanced technology, and a smooth, powerful ride that elevates every journey to new heights.</p>
                 <p>Capacity - 7 passengers</p>
-                <a href="#" class="btn">Book Now</a>
+                <a href="booking.php?car=Toyota%20Alphard" class="btn">Book Now</a>
             </div>
             <div class="box">
                 <div class="box-img">

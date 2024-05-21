@@ -1,95 +1,99 @@
-.booking{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.booking_system-container{
-    width: 100%;
-    padding: 50px 20px;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center right;
-    background-size: cover;
-    display: grid;
-    align-items: center;
-
-}
-.booking-form{
-   padding: 8px 15px;
-    border: 1px solid #7c8a972a;
-    color: #7c8a97;
-    width: 100%;
-    margin: 8px 10px;
-}
-input, select{
-    outline: none;
-    border: none;
-    width: 100%;
-}
-.booking-form_container{
-    display: flex;
-}
-/* Booking Button */
-.book-btn{
-    margin-top: 15px;
-    padding: 10px 20px;
-    color:  white;
-    font-weight: 400;
-    background:#fe5b3d;
-    border-radius:6px;
-    width: auto;
-    transition: 0.8s;
-}
-.book-btn:hover{
-    background:#4169E1;
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Car Info Container */
+.booking_system-container, .booking_services-container {
+  padding: 20px;
+}
 
-.booking_services-container{
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding: 50px 20px;
- }
- .booking_services-container .box{
-    padding: 10px;
-    border-radius: 1rem;
-    box-shadow: 1px 4px 41px rgba(0, 0,0,0.1);
-    
- }
- .booking_services-container .box .box-img{
-    width: 100%;
-    height: 200px;
-    margin: 13px;
-    display: flex;
-    justify-content: center;
- }
- .booking_services-container .box .box-img img{
-    width: 100%;
-    height: 100%;
-    border-radius: 1rem;
-    object-fit: cover;
-    object-position: center; 
-  }
-  
-  .booking_services-container .booking_car_info-container
-  .car_info-container-properties{
-    display: flex;
-    justify-content: space-around;
-  }
+.booking-form_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
-  .booking_services-container .booking_car_info-container
-  .car_name{
-    text-align: center;
+.booking-form {
+  flex: 1 1 calc(50% - 10px);
+  margin-bottom: 10px;
+}
+
+.booking-form input, .booking-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.book-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.booking_car_info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 20px 0;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.box-img img {
+  width: 100%;
+  height: auto;
+}
+
+.car_info-container-properties {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.car_properties {
+  flex: 1 1 30%;
+  text-align: center;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .booking-form {
+      flex: 1 1 100%;
   }
 
-  .car_info-container-properties .car_properties{
-    margin-top: 15px;
-    padding: 10px 20px;
-    color:  white;
-    background:#4169E1;
-    border-radius:6px;
-    width: 130px;
-    text-align: center;
+  .car_info-container-properties {
+      flex-direction: column;
   }
+
+  .car_properties {
+      margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .box {
+      padding: 10px;
+  }
+
+  .car_properties p {
+      font-size: 0.9em;
+  }
+}

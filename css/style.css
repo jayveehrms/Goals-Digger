@@ -59,7 +59,8 @@ header{
     font-size: 1rem;
     padding: 10px 20px;
     color: #4169E1;
-    font-weight: 500; 
+    font-weight: 500;
+    cursor: pointer; 
 }
 .navbar a::after{
     content: "";
