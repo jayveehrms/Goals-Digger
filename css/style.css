@@ -303,11 +303,12 @@ section{
     cursor: pointer;
     font-weight: 600;
     transition: 0.1s;
+    opacity: 0.4;
 
 }
 
 .slider-preview .ember-preview-container:nth-child(2) .home {
-    background: url(../images/Cars/homepageDesign2.png);
+    background: url(../images/Homepage_design/Homepage-cars/Slider-Vios.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
@@ -316,7 +317,7 @@ section{
 }
 
 .slider-preview .ember-preview-container:nth-child(3) .home {
-    background: url(../images/Cars/homepageDesign2.png);
+    background: url(../images/Homepage_design/Homepage-cars/Slider-Innova.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
@@ -572,4 +573,6 @@ color: #fff;
         color: #fe5b3d;
         font-weight: 200;
     }
+
+    
     

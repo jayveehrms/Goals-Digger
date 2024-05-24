@@ -42,7 +42,6 @@
                    }
 
 
-
                } catch(mysqli_sql_exception $e) {
                    
                    echo "Error: Something happened";
@@ -82,7 +81,6 @@
                 header("Location: testUAREVERIFIED.html");
                 exit();
 
-               
                 echo "ERROR: Something Happened";
 
            }
@@ -96,10 +94,14 @@
     $delete_unverified = "DELETE FROM bookingverification WHERE time_duration < DATE_SUB(NOW(), INTERVAL 1 DAY)";
     mysqli_query($conn, $delete_unverified);
 
+    $deleteBooking = "DELETE FROM bookinglist WHERE time_duration < DATE_SUB(NOW(), INTERVAL 7 DAY) AND status = 'Disapproved' OR status = 'Cancelled'";
+    mysqli_query($conn, $deleteBooking);
+
 
     //Note to self* Continue on saturday.
     /* 
         Add these features.
+
         Login feature /But optional for the user
             /Purpose is for the user to be able to book without having to register again
             /Features - They are able to book a ride right away

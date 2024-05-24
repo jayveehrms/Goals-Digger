@@ -14,6 +14,7 @@
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+            <?php include("UserNav.php"); ?>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
@@ -39,7 +40,7 @@
                                 <tbody>
                                 <?php
                                     $userID = $_SESSION['userID'];
-                                    $ret="SELECT * FROM bookinglist WHERE user_id = '$userID'";
+                                    $ret="SELECT * FROM bookinglist WHERE book_id = '$userID'";
                                     $matchBooking = mysqli_query($conn, $ret);
                                     $cnt=1;
                                         while($row = mysqli_fetch_assoc($matchBooking))
@@ -57,8 +58,16 @@
                                     <td><?php 
                                             if($row['status'] == "Pending"){ 
                                                 echo '<span class = "badge badge-warning">'.$row['status'].'</span>'; 
-                                            } else { 
+
+                                            } else if($row['status'] == "Approved"){
                                                 echo '<span class = "badge badge-success">'.$row['status'].'</span>';
+
+                                            } else if($row['status'] == "Disapproved"){
+                                                echo '<span class = "badge badge-warning">'.$row['status'].'</span>';
+
+                                            }else { 
+                                                echo '<span class = "badge badge-success">'.$row['status'].'</span>';
+
                                             }?>
                                     </td>
                                 </tr>

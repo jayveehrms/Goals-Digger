@@ -68,7 +68,7 @@
                 $vPassword = $getVal['password'];
                 $vHash = password_hash($vPassword, PASSWORD_DEFAULT);
                 
-
+ 
                 $insertVerified = "INSERT INTO emberusers (username, email, password, contact, loyalty_badge)
                                   VALUES ('$vUsername', '$email', '$vHash', '$vContact', '$badge')";
                 

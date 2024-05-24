@@ -15,6 +15,7 @@
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+            <?php include("UserNav.php"); ?>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
@@ -39,7 +40,7 @@
                                 <tbody>
                                 <?php
                                     $userID = $_SESSION['userID'];
-                                    $ret="SELECT * FROM bookinglist WHERE user_id = '$userID'";
+                                    $ret="SELECT * FROM bookinglist WHERE book_id = '$userID'";
                                     $matchBooking = mysqli_query($conn, $ret);
                                     $cnt=1;
                                         while($row = mysqli_fetch_assoc($matchBooking))
@@ -60,7 +61,7 @@
                                             }?>
                                     </td>
                                     <td>
-                                        <a href="UserDeleteBooking.php?user_id=<?php echo $row['user_id'];?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Cancel</a>
+                                        <a href="UserDeleteBooking.php?aid_id=<?php echo $row['aid_id'];?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Cancel</a>
                                         </i>                  
                                     </td>
                                 </tr>

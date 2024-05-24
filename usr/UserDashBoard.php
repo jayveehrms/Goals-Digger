@@ -1,7 +1,8 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
     session_start();
-    $userID = $_SESSION['userID'];
+    //$userID = $_SESSION['userID'];
+    
 
 ?>
 <!DOCTYPE html>
@@ -12,9 +13,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+    
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+                <?php include("UserNav.php"); ?>
             <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-table"></i> Available Vehicles

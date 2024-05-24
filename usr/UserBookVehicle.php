@@ -15,6 +15,7 @@
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+                <?php include("UserNav.php"); ?>
             <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i> Users

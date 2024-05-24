@@ -2,6 +2,7 @@
     include("..\PhpHandler\DBconnect.php");
     session_start();
     $userID = $_SESSION['userID'];
+    $aid_id = $_GET['aid_id'];
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST['cancelBooking'])) {
@@ -9,7 +10,24 @@
             $cancelBook = "Cancelled";
             $getVID = mysqli_real_escape_string($conn, $_POST['vehID']);
 
-            $matchBooking = "UPDATE bookinglist SET status = '$cancelBook' WHERE user_id = '$getVID'";
+            $updateLBadge = "SELECT * FROM bookinglist WHERE aid_id = '$getVID'";
+            $queryLBadge = mysqli_query($conn, $updateLBadge);
+            $getLBadge = mysqli_fetch_assoc($queryLBadge);
+            $getBUserId = $getLBadge['book_id'];
+
+            $getUser = "SELECT * FROM emberusers WHERE user_id = '$getBUserId'";
+            $queryUser = mysqli_query($conn, $getUser);
+            $fetchBadge = mysqli_fetch_assoc($queryUser);
+
+
+            if($fetchBadge['loyalty_badge'] > 0 && $getLBadge['status'] == 'Approved') {
+                $updateBadge = "UPDATE emberusers SET loyalty_badge = loyalty_badge - 1 WHERE user_id = '$getBUserId'";
+                $setBadge = mysqli_query($conn, $updateBadge);
+    
+            }
+
+            $matchBooking = "UPDATE bookinglist SET status = '$cancelBook' WHERE aid_id = '$getVID'";
+            
 
             try{
 
@@ -30,9 +48,7 @@
                 echo "Error: Something happened";
             }
 
-
         }
-
 
     }
 
@@ -43,12 +59,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Booking</title>
+    <title>Cancel Booking</title>
 </head>
 <body>
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+            <?php include("UserNav.php"); ?>
                 <div class="card">
                     <div class="card-header">
                     Cancel Booking
@@ -56,7 +73,7 @@
                     <div class="card-body">
                     <!--Add User Form-->
                     <?php
-                        $ret="SELECT * FROM bookinglist WHERE user_id='$userID'";
+                        $ret="SELECT * FROM bookinglist WHERE aid_id='$aid_id'";
                         $matchCancel = mysqli_query($conn, $ret);
                         while($row = mysqli_fetch_assoc($matchCancel)){
 
@@ -64,7 +81,7 @@
                     <form method ="POST"> 
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" hidden value="<?php echo $row['user_id'];?>" name="vehID">
+                            <input type="text" hidden value="<?php echo $row['aid_id'];?>" name="vehID">
                             <input type="text" readonly value="<?php echo $row['username'];?>" required name="cName">
                         </div>
                         

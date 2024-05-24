@@ -59,7 +59,7 @@
                                 ?>
                                     <tr>
                                         <td><?php echo $cnt; ?></td>
-                                        <td><?php echo $row->user_id; ?></td>
+                                        <td><?php echo $row->book_id; ?></td>
                                         <td><?php echo $row->username; ?></td>
                                         <td><?php echo $row->email; ?></td>
                                         <td><?php echo $row->mobile_number; ?></td>

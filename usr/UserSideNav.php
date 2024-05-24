@@ -18,7 +18,6 @@
                 <a class="sub-btn"><i class="fas fa-fw fa-users"></i>My Profile<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
                     <a href="UserViewProfile.php" class="sub-item">View</a>
-                    <a href="#" class="sub-item">Update</a>
                 </div>
             </div>
             <div class="item">

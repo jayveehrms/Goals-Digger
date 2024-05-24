@@ -20,15 +20,15 @@
                     <div class="card-body">
                     
                     <?php
-                        $aid=$_GET['user_id'];
-                        $ret="select * from bookinglist where user_id=?";
+                        $aid=$_GET['aid_id'];
+                        $ret="select * from bookinglist where aid_id=?";
                         $stmt= $conn->prepare($ret) ;
                         $stmt->bind_param('i',$aid);
-                        $stmt->execute() ;//ok
+                        $stmt->execute() ;
                         $res=$stmt->get_result();
                         
-                        while($row=$res->fetch_object())
-                    {
+                        $row=$res->fetch_object();
+                    
                     ?>
                     <form method ="POST"> 
                         <div class="form-group">
@@ -71,16 +71,10 @@
                             <input type="text" readonly value="<?php echo $row->status;?>" class="form-control" id="exampleInputEmail1"  name="bStatus">
                         </div>
 
-                        
 
                         <button type="submit" name="approve_booking" class="btn btn-success">Approve booking</button>
                     </form>
                     
-                    <?php 
-                
-                        }
-                    
-                    ?>
                     
                     </div>
                 </div>
@@ -89,17 +83,33 @@
 </body>
 </html>
 <?php 
-    if(isset($_POST['approve_booking']))
-    {
-        $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
 
-        $sql = "SELECT * FROM bookinglist WHERE user_id='$user_id'";
+
+    if(isset($_POST['approve_booking'])) {
+
+        $aid_id = mysqli_real_escape_string($conn, $_GET['aid_id']);
+
+        $sql = "SELECT * FROM bookinglist WHERE aid_id='$aid_id'";
         $result = mysqli_query($conn, $sql);
         $setPVehicle = mysqli_fetch_assoc($result);
         $getPVehicle = $setPVehicle['preferred_vehicle'];
+        $getBUserId = $setPVehicle['book_id'];
+
+        $getUser = "SELECT * FROM emberusers WHERE user_id = '$getBUserId'";
+        $queryUser = mysqli_query($conn, $getUser);
+        $fetchBadge = mysqli_fetch_assoc($queryUser);
+
 
         if(mysqli_num_rows($result) > 0) {
-            $sql = "UPDATE bookinglist SET status='Approved' WHERE user_id='$user_id'";
+
+            if($fetchBadge['loyalty_badge'] < 3) {
+                $updateBadge = "UPDATE emberusers SET loyalty_badge = loyalty_badge + 1 WHERE user_id = '$getBUserId'";
+                $setBadge = mysqli_query($conn, $updateBadge);
+    
+            }
+
+            $sql = "UPDATE bookinglist SET status='Approved' WHERE aid_id='$aid_id'";
+            
             if(mysqli_query($conn, $sql)) {
                 $newVStatus = "Booked";
                 $updateVehice = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";

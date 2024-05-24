@@ -1,6 +1,15 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
+    /*
+        Note*
+        Add the nav bar for the dashboards with the logout feature
+        as well as modify the navbar for booking, about us, and homepage
+        so that it shows the username of the logged in user with the 
+        logout feature.
+    
+    */
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled'";
+                                    $ret = "SELECT * FROM bookinglist WHERE status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled' OR status = 'Approved'";
                                     $stmt = $conn->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
@@ -50,7 +59,7 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
-                                            <td><?php echo $row->user_id; ?></td>
+                                            <td><?php echo $row->book_id; ?></td>
                                             <td><?php echo $row->username; ?></td>
                                             <td><?php echo $row->email; ?></td>
                                             <td><?php echo $row->mobile_number; ?></td>
@@ -75,8 +84,24 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="approve-booking.php?user_id=<?php echo $row->user_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
-                                                <a href="disapprove-booking.php?user_id=<?php echo $row->user_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                                <?php 
+
+                                                    if($row->status == "Pending") {
+                                                        
+                                                
+                                                ?>
+                                                    <a href="approve-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
+                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                                <?php 
+                                                    } else if ($row->status == "Approved"){
+                                                
+                                                ?>
+                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+
+                                                <?php 
+                                                    }
+                                                
+                                                ?>
                                             </i>
                                             </td>
                                         </tr>

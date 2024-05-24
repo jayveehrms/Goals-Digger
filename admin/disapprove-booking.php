@@ -18,17 +18,17 @@
                     Approve Booking
                     </div>
                     <div class="card-body">
-                    <!--Add User Form-->
+
                     <?php
-                        $aid=$_GET['user_id'];
-                        $ret="select * from bookinglist where user_id=?";
+                        $aid=$_GET['aid_id'];
+                        $ret="select * from bookinglist where aid_id=?";
                         $stmt= $conn->prepare($ret) ;
                         $stmt->bind_param('i',$aid);
-                        $stmt->execute() ;//ok
+                        $stmt->execute() ;
                         $res=$stmt->get_result();
-                        //$cnt=1;
-                        while($row=$res->fetch_object())
-                    {
+
+                        $row=$res->fetch_object();
+
                     ?>
                     <form method ="POST"> 
                         <div class="form-group">
@@ -81,11 +81,6 @@
                         <button type="submit" name="disapprove" class="btn btn-danger">Disapprove Booking</button>
                     </form>
                     
-                    <?php 
-                
-                        }
-                    
-                    ?>
                     
                     </div>
                 </div>
@@ -96,18 +91,32 @@
 <?php 
     if(isset($_POST['disapprove']))
     {
-        $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+        $aid_id = mysqli_real_escape_string($conn, $_GET['aid_id']);
 
-        $sql = "SELECT * FROM bookinglist WHERE user_id='$user_id'";
+        $sql = "SELECT * FROM bookinglist WHERE aid_id='$aid_id'";
         $result = mysqli_query($conn, $sql);
+        $setPVehicle = mysqli_fetch_assoc($result);
+        $getPVehicle = $setPVehicle['preferred_vehicle'];
+        $getBUserId = $setPVehicle['book_id'];
+
+        $getUser = "SELECT * FROM emberusers WHERE user_id = '$getBUserId'";
+        $queryUser = mysqli_query($conn, $getUser);
+        $fetchBadge = mysqli_fetch_assoc($queryUser);
 
         if(mysqli_num_rows($result) > 0) {
-            $sqlUpdate = "UPDATE bookinglist SET status='Disapproved' WHERE user_id='$user_id'";
-            $rows = mysqli_fetch_assoc($result);
+
+            if($fetchBadge['loyalty_badge'] > 0 && $setPVehicle['status'] == 'Approved') {
+                $updateBadge = "UPDATE emberusers SET loyalty_badge = loyalty_badge - 1 WHERE user_id = '$getBUserId'";
+                $setBadge = mysqli_query($conn, $updateBadge);
+    
+            }
+
+            $sqlUpdate = "UPDATE bookinglist SET status='Disapproved' WHERE aid_id='$aid_id'";
+
             if(mysqli_query($conn, $sqlUpdate)) {
                 echo"<br> Record Deleted";
  
-                $to = $rows['email'];
+                $to = $setPVehicle['email'];
                 $headers = "Content-Type: text/html; charset=UTF-8\r\n";
                 $subject = "Booking Disapproved!";
                 $message = mysqli_real_escape_string($conn, $_POST['reason']);

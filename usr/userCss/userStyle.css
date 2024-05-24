@@ -463,4 +463,10 @@ a {
       background-position: 0 0;
     }
   }
+
+  .bg-dark {
+    background-color: #343a40 !important;
+  }
+
+  
   

@@ -39,7 +39,7 @@
             </div>
             <div class="booking-form">
                 <select id="vehicleSelect" name="bf-vehicle" required>
-                    <option value="Select vehicle">Select vehicle</option>
+                    <option value="Select vehicle" disabled>Select vehicle</option>
                     <option value="Toyota Alphard" data-img="Images\Cars\sample-car_Toyota_Alphard.png" data-type="MPV" data-transmission="Automatic" data-capacity="7 to 8">Toyota Alphard</option>
                     <option value="Toyota Super Grandia Elite" data-img="Images\Cars\sample-car_Toyota-Super_Grandia_Elite.jpg" data-type="Van" data-transmission="Automatic" data-capacity="9 to 11">Toyota Super Grandia Elite</option>
                     <option value="Toyota GL Grandia" data-img="Images\Cars\sample-car_Toyota_GL_Grandia.png" data-type="Van" data-transmission="Manual" data-capacity="10 to 15">Toyota GL Grandia</option>

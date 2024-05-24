@@ -16,6 +16,7 @@
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+                <?php include("UserNav.php"); ?>
                 <div class="card">
                         <div class="card-header">
                          Change Password

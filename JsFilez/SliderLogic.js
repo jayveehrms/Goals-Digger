@@ -14,4 +14,4 @@ function prev() {
     slider[i].classList.add('active');
 }
 
-setInterval(next, 6000);
+setInterval(next, 8000);

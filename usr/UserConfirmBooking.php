@@ -10,6 +10,10 @@
             $matchResult = mysqli_query($conn, $matchUser);
             $userMatch = mysqli_fetch_assoc($matchResult);
 
+            $countBookings = "SELECT COUNT(*) AS RowCount FROM bookinglist WHERE book_id = '$userID'";
+            $queryCount = mysqli_query($conn, $countBookings);
+            $rowCount = mysqli_fetch_assoc($queryCount);
+
             $getMatchId = $userMatch['user_id'];
             $getMatchName = $userMatch['username'];
             $getMatchEmail = $userMatch['email'];
@@ -23,43 +27,83 @@
             $travel_time = mysqli_real_escape_string($conn, $_POST['btime']);
             $set_travel_date_time = $travel_date . ' ' . $travel_time;
 
-            $sqlConfirm = "INSERT INTO bookinglist (user_id, username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
-                          VALUES ('$getMatchId', '$getMatchName', '$getMatchEmail', '$getMatchContact', '$setPrefVechicle', '$setPLocation', '$setDestination', '$set_travel_date_time')";
-            
-            try{
-
-                if(mysqli_query($conn, $sqlConfirm)) {
-                    $to = $getMatchEmail;
-                    $headers = "Content-Type: text/html; charset=UTF-8\r\n";
-                    $subject = "Book Success!";
-                    $message = "You just booked!<br>";
-            
-                    mail($to, $subject, $message, $headers);
-
-                    header("Location: UserDashBoard.php");
-                    exit(); 
+            if($userMatch['loyalty_badge'] == 0 || $userMatch['loyalty_badge'] < 3) {
+                if($rowCount['RowCount'] == 1) {
+                    header("Location: ../testPage.html"); // Heads to testPage.html for testing purposes to know if the code is working
+                    exit();
 
                 } else {
-                    echo "Error: " . mysqli_error($conn);
+                    $sqlConfirm = "INSERT INTO bookinglist (book_id, username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
+                          VALUES ('$getMatchId', '$getMatchName', '$getMatchEmail', '$getMatchContact', '$setPrefVechicle', '$setPLocation', '$setDestination', '$set_travel_date_time')";
+            
+                    try{
 
+                        mysqli_query($conn, $sqlConfirm);
+                            $to = $getMatchEmail;
+                            $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                            $subject = "Book Success!";
+                            $message = "You just booked!<br>";
+                    
+                            mail($to, $subject, $message, $headers);
+
+                            header("Location: UserDashBoard.php");
+                            exit(); 
+
+                        
+                            echo "Error: " . mysqli_error($conn);
+
+                        
+
+
+                    } catch(mysqli_sql_exception $e) {
+                        
+                        echo "Error: Something happened";
+                    }
 
                 }
 
+            } else if ($userMatch['loyalty_badge'] == 3) {
+                if($rowCount['RowCount'] < 5){
+                    $sqlConfirm = "INSERT INTO bookinglist (book_id, username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
+                          VALUES ('$getMatchId', '$getMatchName', '$getMatchEmail', '$getMatchContact', '$setPrefVechicle', '$setPLocation', '$setDestination', '$set_travel_date_time')";
+            
+                    try{
+
+                        if(mysqli_query($conn, $sqlConfirm)) {
+                            $to = $getMatchEmail;
+                            $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                            $subject = "Book Success!";
+                            $message = "You just booked!<br>";
+                    
+                            mail($to, $subject, $message, $headers);
+
+                            header("Location: UserDashBoard.php");
+                            exit(); 
+
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
+
+                        }
 
 
-            } catch(mysqli_sql_exception $e) {
+                    } catch(mysqli_sql_exception $e) {
+                        
+                        echo "Error: Something happened";
+                    }
+                    
+                } else {
+                    header("Location: ../testPage.html"); // Heads to testPage.html for testing purposes to know if the code is working
+                    exit();
+
+                }
                 
-                echo "Error: Something happened";
             }
+            
+
+        }//End of isset
 
 
-
-
-
-        }
-
-
-    }
+    }// End of request_method
 
 
 ?>
@@ -74,6 +118,7 @@
     <?php include("UserSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+            <?php include("UserNav.php"); ?>
             <div class="card">
                     <div class="card-header">
                     Update Vehicle

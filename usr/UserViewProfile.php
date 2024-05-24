@@ -27,6 +27,7 @@
         <div id="wrapper">
             <div id="content-wrapper">
             <?php
+                include("UserNav.php");
                 $ret="SELECT * FROM emberusers WHERE user_id='$userID'";
                 $matchProfile = mysqli_query($conn, $ret);
                 while($row = mysqli_fetch_assoc($matchProfile)){

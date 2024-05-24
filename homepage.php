@@ -20,7 +20,7 @@
                     <h1><span>Welcome</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php" class="learnmore">BOOK NOW!</a>
+                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
                     </div>
                 </div>
             </section>
@@ -32,7 +32,7 @@
                     <h1><span>Welcome2</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php" class="learnmore">BOOK NOW!</a>
+                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
                     </div>
                 </div>
             </section>
@@ -44,7 +44,7 @@
                     <h1><span>Welcome3</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php" class="learnmore">BOOK NOW!</a>
+                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
                     </div>
                 </div>
             </section>
