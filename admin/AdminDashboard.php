@@ -1,7 +1,5 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
-    session_start();
-    $adminEmail = $_SESSION['adminEmail'];
 
     /*
         Note* 
@@ -27,6 +25,7 @@
     <?php include("AdminSideNav.php"); ?>
     <div id="wrapper">
         <div id="content-wrapper">
+            <?php include("AdminNav.php"); ?>
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i> Bookings

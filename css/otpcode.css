@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.otp-card {
+    text-align: center;
+    background-color: #ffbf00;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px -20px black;
+}
+
+.otp-card h1 {
+    margin-bottom: 20px;
+}
+
+.otp-card p {
+    margin: 10px 0;
+}
+
+.otp-card-inputs {
+    margin: 30px 0px;
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+    grid-template-columns: repeat(6, auto);
+}
+
+.otp-card-inputs input {
+    width: 60px;
+    height: 70px;
+    font-size: 35px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.otp-card-inputs input:focus {
+    outline: 2px solid #000080;
+    border-color: transparent;
+}
+
+button {
+    background-color: #000080;
+    border: none;
+    padding: 15px 50px;
+    font-size: 18px;
+    color: #ffbf00;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.background-color-change-4x {
+    -webkit-animation: background-color-change-4x 8s infinite linear alternate both;
+    animation: background-color-change-4x 8s infinite linear alternate both;
+}
+
+@-webkit-keyframes background-color-change-4x {
+    0% { background: #000080; }
+    25% { background: #4863a0; }
+    50% { background: #ffbf00; }
+    75% { background: #ffb90f; }
+    100% { background: #000080; }
+}
+
+@keyframes background-color-change-4x {
+    0% { background: #000080; }
+    25% { background: #4863a0; }
+    50% { background: #ffbf00; }
+    75% { background: #ffb90f; }
+    100% { background: #000080; }
+}

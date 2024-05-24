@@ -6,7 +6,7 @@
 
         if(isset($_POST['submit'])) {
 
-            $userName = mysqli_real_escape_string($conn, $_POST['fName']);
+            $userName = mysqli_real_escape_string($conn, $_POST['fName']); //Reminder i think you forgot the lname
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $mobileNum = mysqli_real_escape_string($conn, $_POST['mobileNum']);
             $pVehicle = mysqli_real_escape_string($conn, $_POST['bf-vehicle']);
@@ -32,7 +32,7 @@
                
                        mail($to, $subject, $message, $headers);
 
-                       header("Location: verifyPage.php?email=" . $email);
+                       header("Location: otpVerify.php?email=" . $email);
                        exit(); 
 
                    } else {
@@ -50,43 +50,6 @@
 
         }
 
-        if(isset($_POST['vSubmit'])) {
-            $email = mysqli_real_escape_string($conn, $_POST["email"]);
-            $verification_code = mysqli_real_escape_string($conn, $_POST["verification_code"]);
-
-            $sqlUpdate = "UPDATE bookingverification SET email_verified_at = NOW() WHERE email = '$email' AND verification_code = '$verification_code'";
-            $result  = mysqli_query($conn, $sqlUpdate);
-    
-           if (mysqli_affected_rows($conn) == 0) {
-                echo "Verification failed";
-                exit();
-
-           } else {
-                $getVerifiedUser = "SELECT * FROM bookingverification WHERE email = '$email'";
-                $vResult = mysqli_query($conn, $getVerifiedUser);
-                $getVal = mysqli_fetch_assoc($vResult);
-
-                $vUsername = $getVal['username'];
-                $vMobile_number = $getVal['mobile_number'];
-                $vPVehicle = $getVal['preferred_vehicle'];
-                $vPLocation = $getVal['pickup_location'];
-                $vDestination = $getVal['destination'];
-                $vTravel_date_time = $getVal['travel_date_time'];
-
-                $insertVerified = "INSERT INTO bookinglist (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
-                                  VALUES ('$vUsername', '$email', '$vMobile_number', '$vPVehicle', '$vPLocation', '$vDestination', '$vTravel_date_time')";
-                
-                
-                mysqli_query($conn, $insertVerified);
-                header("Location: testUAREVERIFIED.html");
-                exit();
-
-                echo "ERROR: Something Happened";
-
-           }
-
-
-        }
 
 
     }
@@ -94,8 +57,11 @@
     $delete_unverified = "DELETE FROM bookingverification WHERE time_duration < DATE_SUB(NOW(), INTERVAL 1 DAY)";
     mysqli_query($conn, $delete_unverified);
 
-    $deleteBooking = "DELETE FROM bookinglist WHERE time_duration < DATE_SUB(NOW(), INTERVAL 7 DAY) AND status = 'Disapproved' OR status = 'Cancelled'";
+    $deleteBooking = "DELETE FROM bookinglist WHERE time_duration < DATE_SUB(NOW(), INTERVAL 7 DAY) AND (status = 'Disapproved' OR status = 'Cancelled')";
     mysqli_query($conn, $deleteBooking);
+
+    $deleteApproved = "DELETE FROM bookinglist WHERE time_duration < DATE_SUB(NOW(), INTERVAL 30 DAY) AND status = 'Approved'";
+    mysqli_query($conn, $deleteApproved);
 
 
     //Note to self* Continue on saturday.

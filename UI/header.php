@@ -1,6 +1,5 @@
 <?php 
     include("PhpHandler/userRegister.php");
-    session_start();
     include("PhpHandler/userLogin.php");
 
     if (isset($_SESSION['error'])) {
@@ -35,7 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
     <script src="JsFilez/Login.js"></script>
 </head>
 <body>
@@ -61,8 +60,17 @@
             ?>
         </ul>
         <div class="header-btn">
-            <p id="welCome"><?php echo $isLoggedIn ? "Welcome {$username}!" : ""; ?></p>
-            <button id="show-login" name="logOutIn"><?php echo $isLoggedIn ? "LOGOUT" : "LOGIN"; ?></button>
+            <p id="welCome" class="welcome-message">
+            <?php 
+                if ($isLoggedIn) {
+                    echo "Welcome <p class='welcome-user'>{$username}!</p>";
+                } else {
+                    echo "";
+                    
+                }
+            ?>
+            </p>
+            <button id="show-login" name="logOutIn"><?php if ($isLoggedIn) { echo "LOGOUT";} else {echo "LOGIN";}?></button>
             <form id="logout-form" method="POST" action="homepage.php" style="display: none;">
                 <input type="hidden" name="logout" value="1">
             </form>

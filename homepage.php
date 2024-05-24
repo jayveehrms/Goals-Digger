@@ -20,7 +20,20 @@
                     <h1><span>Welcome</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            if(!empty($_SESSION['userID'])) {
+
+                        ?>
+                            <a href="usr\UserBookVehicle.php" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            } else if(empty($_SESSION['userID'])) {
+                        
+                        ?>
+                            <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            }
+                                
+                        ?>
                     </div>
                 </div>
             </section>
@@ -32,7 +45,20 @@
                     <h1><span>Welcome2</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            if(!empty($_SESSION['userID'])) {
+
+                        ?>
+                            <a href="usr\UserBookVehicle.php" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            } else if(empty($_SESSION['userID'])) {
+                        
+                        ?>
+                            <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            }
+                                
+                        ?>
                     </div>
                 </div>
             </section>
@@ -44,7 +70,20 @@
                     <h1><span>Welcome3</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
-                        <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            if(!empty($_SESSION['userID'])) {
+
+                        ?>
+                            <a href="usr\UserBookVehicle.php" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            } else if(empty($_SESSION['userID'])) {
+                        
+                        ?>
+                            <a href="booking.php?car=Toyota%20Alphard" class="learnmore">BOOK NOW!</a>
+                        <?php 
+                            }
+                                
+                        ?>
                     </div>
                 </div>
             </section>
@@ -94,7 +133,20 @@
                 <h3>Toyota Alphard</h3>
                 <p>Experience unparalleled luxury and sophistication in the Toyota Alphard, featuring opulent interiors, advanced technology, and a smooth, powerful ride that elevates every journey to new heights.</p>
                 <p>Capacity - 7 passengers</p>
-                <a href="booking.php?car=Toyota%20Alphard" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Alphard" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>    
             </div>
             <div class="box">
                 <div class="box-img">
@@ -103,7 +155,21 @@
                 <h3>Toyota GL Grandia</h3>
                 <p>For those seeking practicality and comfort, the Toyota GL Grandia delivers with its spacious cabin, versatile seating configurations, and dependable performance, making it the ultimate choice for family outings and group travels.</p>
                 <p>Capacity - 10 passengers</p>
-                <a href="booking.php?car=Toyota%20GL Grandia" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20GL Grandia" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?> 
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -112,7 +178,21 @@
                 <h3>Toyota Super Grandia Elite</h3>
                 <p>Elevate your travel experience with the Toyota Super Grandia Elite, boasting luxurious design, and cutting-edge safety technology, ensuring a secure and seamless journey for you and your passengers.</p>
                 <p>Capacity - 14 passengers</p>
-                <a href="booking.php?car=Toyota%20Super Grandia Elite" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Super Grandia Elite" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -121,7 +201,21 @@
                 <h3>Toyota Hi-ace</h3>
                 <p>Versatility meets durability in the Toyota Hiace, renowned for its robust construction, flexible seating options, and reliable performance, ensuring seamless transportation for both passengers and cargo.</p>
                 <p>Capacity - 17 passengers</p>
-                <a href="booking.php?car=Toyota%20Hiace" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Hiace" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -130,7 +224,21 @@
                 <h3>Toyota Fortuner</h3>
                 <p>Conquer any terrain with confidence in the Toyota Fortuner, a rugged SUV equipped with advanced off-road capabilities, powerful engine options, and a comfortable interior designed to handle any adventure with ease.</p>
                 <p>Capacity - 6 passengers</p>
-                <a href="booking.php?car=Toyota%20Fortuner" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Fortuner" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -139,7 +247,21 @@
                 <h3>Toyota Innova</h3>
                 <p>The Toyota Innova redefines family travel with its spacious and adaptable cabin, modern features, and renowned reliability, providing comfort and convenience for every journey.</p>
                 <p>Capacity - 7 passengers</p>
-                <a href="booking.php?car=Toyota%20Innova" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Innova" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -148,7 +270,21 @@
                 <h3>Toyota Altis</h3>
                 <p>Sleek and stylish, the Toyota Altis offers a refined driving experience with its elegant design, efficient performance, and advanced technology, making it the perfect sedan for those who prioritize both form and function.</p>
                 <p>Capacity - 4 passengers</p>
-                <a href="booking.php?car=Toyota%20Altis" class="btn">Book Now</a>
+                    <?php 
+                        if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                        
+                    ?>
+                        <a href="booking.php?car=Toyota%20Altis" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                
+                    ?>
+                
             </div>
             <div class="box">
                 <div class="box-img">
@@ -157,7 +293,21 @@
                 <h3>Toyota Vios</h3>
                 <p>Navigate city streets with ease in the Toyota Vios, featuring agile handling, fuel-efficient performance, and a range of smart features designed to enhance your urban driving experience.</p>
                 <p>Capacity - 4 passengers</p>
-                <a href="booking.php?car=Toyota%20Vios" class="btn">Book Now</a>
+                    <?php 
+                            if(!empty($_SESSION['userID'])) {
+
+                    ?>
+                        <a href="usr\UserBookVehicle.php" class="btn">Book Now</a>
+                    <?php 
+                        } else if(empty($_SESSION['userID'])) {
+                            
+                    ?>
+                            <a href="booking.php?car=Toyota%20Vios" class="btn">Book Now</a>
+                    <?php 
+                        }
+                                    
+                    ?>
+                
             </div>
         </div>
     </section>

@@ -1,8 +1,9 @@
 <?php 
   include("..\PhpHandler\DBconnect.php");
-  $userID = $_SESSION['userID'];
+  session_start();
+  $adminEmail = $_SESSION['adminEmail'];
 
-  $mUser = "SELECT * FROM emberusers WHERE user_id = '$userID'";
+  $mUser = "SELECT * FROM emberadmin WHERE email = '$adminEmail'";
   $mQueryUsr = mysqli_query($conn, $mUser);
   $mResult = mysqli_fetch_assoc($mQueryUsr);
   $mUserName = strtoupper($mResult['username']);
@@ -24,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="userCss/userNavStyle.css">
+    <link rel="stylesheet" href="adminCss/adminNavStyle.css">
     <title></title>
 </head>
 <body>
@@ -37,7 +38,7 @@
       
       <li class="nav-item dropdown no-arrow">
         <form method="POST">
-        <a href="../homepage.php" class="homeBtn">HOME</a>
+          <a href="../homepage.php" class="homeBtn">HOME</a>
           <button class="nav-link dropdown-toggle" name="logoutBtn">
             LogOut <i class="fa fa-sign-out" style="color:red"></i>
           </button>

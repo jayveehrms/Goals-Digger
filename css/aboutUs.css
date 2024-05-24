@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.service-wrapper {
+    padding: 5% 8%;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #fff;
+    font-size: 5rem;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: transparent;
+    letter-spacing: 4px;
+    background: linear-gradient(8deg, rgb(236, 179, 20) 0%, rgb(14, 25, 88) 41%, rgb(243, 169, 10) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    margin-bottom: 80px; /* Increased bottom margin for more space */
+}
+
+h1:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    height: 8px;
+    width: 80%;
+    border-radius: 8%;
+    background-color: #10105a;
+}
+
+h1 span {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #10105a;
+    animation: anim 5s linear infinite;
+}
+
+@keyframes anim {
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        left: 88%;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin-top: 50px; /* Additional top margin for more space */
+}
+
+.card {
+    background-color: #f0b30e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    border: 0.2px solid #10105a;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items horizontally */
+    text-align: center; /* Center align text */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #0e0e49;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.card i {
+    color: #0e0e49;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 4.8rem;
+}
+
+footer {
+    background: #10105a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .motto {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+footer .motto {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    position: relative; /* Added position relative */
+    display: inline-block; /* Ensuring inline-block display */
+}
+
+footer .motto::after {
+    content: ""; /* Adding a pseudo-element */
+    position: absolute; /* Position it absolutely */
+    bottom: -2px; /* Push it slightly below the text */
+    left: 0; /* Align it with the text */
+    width: 100%; /* Full width */
+    height: 2px; /* Height of the line */
+    background-color: transparent; /* Initially transparent */
+    transition: background-color 0.3s; /* Smooth transition for background-color */
+}
+
+footer .motto:hover::after {
+    background-color: #fff; /* Change background color on hover */
+}
+

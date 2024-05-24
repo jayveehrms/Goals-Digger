@@ -13,6 +13,7 @@
     <?php include("AdminSideNav.php"); ?>
         <div id="wrapper">
             <div id="content-wrapper">
+                <?php include("AdminNav.php"); ?>
                 <div class="card">
                     <div class="card-header">
                     Approve Booking
