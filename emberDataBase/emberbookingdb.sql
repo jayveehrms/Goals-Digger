@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 02:54 PM
+-- Generation Time: May 25, 2024 at 01:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bookinglist` (
-  `user_id` int(11) NOT NULL,
+  `aid_id` int(12) NOT NULL,
+  `book_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `mobile_number` varchar(25) NOT NULL,
@@ -36,16 +37,9 @@ CREATE TABLE `bookinglist` (
   `pickup_location` varchar(255) NOT NULL,
   `destination` varchar(255) NOT NULL,
   `travel_date_time` datetime NOT NULL,
-  `status` enum('Pending','Approved','Disapproved','Cancelled') NOT NULL DEFAULT 'Pending'
+  `status` enum('Pending','Approved','Disapproved','Cancelled') NOT NULL DEFAULT 'Pending',
+  `time_duration` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bookinglist`
---
-
-INSERT INTO `bookinglist` (`user_id`, `username`, `email`, `mobile_number`, `preferred_vehicle`, `pickup_location`, `destination`, `travel_date_time`, `status`) VALUES
-(6, 'Dreadlord', 'surunekaru@gmail.com', '09090909054', 'Car 1', 'Centennial Village', 'SM aura', '2024-05-20 23:48:00', 'Cancelled'),
-(121, 'Carl', '3qagaq3a4ha', '34262362623', 'aegra3q4a', 'aefbqa34', 'adbarea', '2024-05-18 09:33:12', 'Disapproved');
 
 -- --------------------------------------------------------
 
@@ -106,9 +100,7 @@ CREATE TABLE `emberusers` (
 --
 
 INSERT INTO `emberusers` (`user_id`, `username`, `email`, `password`, `contact`, `loyalty_badge`) VALUES
-(4, 'Carl Angelo Jamero', 'angelo@example.coma', 'asgasga', '0183751089', 3),
-(5, 'Angelo', 'carl@example.com', 'fyueafaer', '09756448231', 1),
-(6, 'Dreadlord', 'surunekaru@gmail.com', '$2y$10$34zHvdEdv/y4059mzeowIOkCv8EbHjSO2OzVvHsShswvXvzuGkYYe', '09090909054', 0);
+(9, 'Carl', 'jcaamrelo@gmail.com', '$2y$10$nbJrtzFAYiaMCXZB20tJIOpvUVHuHHvr/9t8bL8NHDjn9jqy6SviW', '45646246247', 2);
 
 -- --------------------------------------------------------
 
@@ -122,7 +114,7 @@ CREATE TABLE `embervehicles` (
   `v_reg_no` varchar(200) NOT NULL,
   `v_pass_no` varchar(200) NOT NULL,
   `v_type` varchar(200) NOT NULL,
-  `v_status` varchar(200) NOT NULL
+  `v_status` enum('Booked','Available','','') NOT NULL DEFAULT 'Available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -130,8 +122,9 @@ CREATE TABLE `embervehicles` (
 --
 
 INSERT INTO `embervehicles` (`v_id`, `v_name`, `v_reg_no`, `v_pass_no`, `v_type`, `v_status`) VALUES
-(2, 'Car 1', 'CA124', '10', 'VAN', 'Available'),
-(3, 'Car 2', 'CA125', '50', 'BUS', 'Booked');
+(5, 'Car 1', 'CA123', '10', 'SUV', 'Available'),
+(6, 'Car 2', 'CA1234', '50', 'BUS', 'Booked'),
+(7, 'Car 3', 'CA1245', '10', 'VAN', 'Available');
 
 -- --------------------------------------------------------
 
@@ -150,6 +143,13 @@ CREATE TABLE `userverification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `userverification`
+--
+
+INSERT INTO `userverification` (`username`, `email`, `contact`, `password`, `verification_code`, `email_verified_at`, `time_duration`) VALUES
+('Dreadlord', 'surunekaru@gmail.com', '09090909054', 'carl', '332568', NULL, '2024-05-24 17:57:08');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -157,9 +157,7 @@ CREATE TABLE `userverification` (
 -- Indexes for table `bookinglist`
 --
 ALTER TABLE `bookinglist`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`aid_id`);
 
 --
 -- Indexes for table `bookingverification`
@@ -177,8 +175,8 @@ ALTER TABLE `emberadmin`
 -- Indexes for table `emberusers`
 --
 ALTER TABLE `emberusers`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `email` (`email`);
 
 --
 -- Indexes for table `embervehicles`
@@ -200,19 +198,19 @@ ALTER TABLE `userverification`
 -- AUTO_INCREMENT for table `bookinglist`
 --
 ALTER TABLE `bookinglist`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `aid_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `emberusers`
 --
 ALTER TABLE `emberusers`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `embervehicles`
 --
 ALTER TABLE `embervehicles`
-  MODIFY `v_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `v_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
