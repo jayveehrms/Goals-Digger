@@ -5,10 +5,8 @@ session_start();
 $verification_successful = false;
 $verification_failed = false;
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vSubmit'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    
+    $email = mysqli_real_escape_string($conn, $_POST["email"]);
     $v1 = mysqli_real_escape_string($conn, $_POST['v1']);
     $v2 = mysqli_real_escape_string($conn, $_POST['v2']);
     $v3 = mysqli_real_escape_string($conn, $_POST['v3']);
@@ -18,23 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vSubmit'])) {
 
     $verification_code = $v1 . $v2 . $v3 . $v4 . $v5 . $v6;
 
-    $sqlUpdate = "UPDATE bookingverification SET email_verified_at = NOW() WHERE email = '$email' AND verification_code = '$verification_code'";
+    $sqlUpdate = "UPDATE userverification SET email_verified_at = NOW() WHERE email = '$email' AND verification_code = '$verification_code'";
     $result = mysqli_query($conn, $sqlUpdate);
 
     if (mysqli_affected_rows($conn) > 0) {
         $verification_successful = true;
-        $_SESSION['vhelp'] = $email;
+        $_SESSION['vUser'] = $email;
 
-        $getVerifiedUser = "SELECT * FROM bookingverification WHERE email = '$email'";
+        $getVerifiedUser = "SELECT * FROM userverification WHERE email = '$email'";
         $vResult = mysqli_query($conn, $getVerifiedUser);
         $getVal = mysqli_fetch_assoc($vResult);
 
         $vUsername = $getVal['username'];
-        $vMobile_number = $getVal['mobile_number'];
-        $vPVehicle = $getVal['preferred_vehicle'];
-        $vPLocation = $getVal['pickup_location'];
-        $vDestination = $getVal['destination'];
-        $vTravel_date_time = $getVal['travel_date_time'];
+        $vContact = $getVal['contact'];
+        $badge = 0;
+        $vPassword = $getVal['password'];
+        $vHash = password_hash($vPassword, PASSWORD_DEFAULT);
 
         $insertVerified = "INSERT INTO bookinglist (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
                           VALUES ('$vUsername', '$email', '$vMobile_number', '$vPVehicle', '$vPLocation', '$vDestination', '$vTravel_date_time')";
@@ -63,7 +60,12 @@ if (isset($_POST['vSuccess'])) {
     <div class="otp-card">
         <form method="POST">
             <h1>OTP Verification</h1>
-        
+            <p>Code has been sent to 
+                <?php 
+                    $maskedEmail = substr_replace($_SESSION['vUser'], '******', 0, 6);
+                    echo $maskedEmail; 
+                ?>
+            </p>
             <input type="hidden" name="email" value="<?php echo htmlspecialchars($_GET['email'] ?? ''); ?>">
             <div class="otp-card-inputs">
                 <input type="text" maxlength="1" autofocus name="v1">

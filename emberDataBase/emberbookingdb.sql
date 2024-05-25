@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 01:59 AM
+-- Generation Time: May 25, 2024 at 02:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -143,13 +143,6 @@ CREATE TABLE `userverification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `userverification`
---
-
-INSERT INTO `userverification` (`username`, `email`, `contact`, `password`, `verification_code`, `email_verified_at`, `time_duration`) VALUES
-('Dreadlord', 'surunekaru@gmail.com', '09090909054', 'carl', '332568', NULL, '2024-05-24 17:57:08');
-
---
 -- Indexes for dumped tables
 --
 
@@ -198,7 +191,7 @@ ALTER TABLE `userverification`
 -- AUTO_INCREMENT for table `bookinglist`
 --
 ALTER TABLE `bookinglist`
-  MODIFY `aid_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `aid_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `emberusers`
