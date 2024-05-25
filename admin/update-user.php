@@ -25,60 +25,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="adminCss\adminView.css">
     <title>Add user</title>
 </head>
 <body>
     <?php include("AdminSideNav.php"); ?>
-        <div id="wrapper">
-            <div id="content-wrapper">
-                <?php include("AdminNav.php"); ?>
-                <div class="card">
-                    <div class="card-header">
-                    Add User
-                    </div>
-                    <div class="card-body">
-                        <?php
-                            $aid=$_GET['email'];
-                            $ret="SELECT * FROM emberusers WHERE email=?";
-                            $stmt= $conn->prepare($ret) ;
-                            $stmt->bind_param('s',$aid);
-                            $stmt->execute() ;
-                            $res=$stmt->get_result();
-                            while($row=$res->fetch_object()) {
+            <div id="wrapper">
+                <div id="content-wrapper">
+                    <?php include("AdminNav.php"); ?>
+                    <div class="card">
+                        <div class="card-header">
+                        Add User
+                        </div>
+                        <div class="card-body">
+                            <?php
+                                $aid=$_GET['email'];
+                                $ret="SELECT * FROM emberusers WHERE email=?";
+                                $stmt= $conn->prepare($ret) ;
+                                $stmt->bind_param('s',$aid);
+                                $stmt->execute() ;
+                                $res=$stmt->get_result();
+                                while($row=$res->fetch_object()) {
 
-                        ?>
-                            <form method ="POST"> 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" value="<?php echo $row->username;?>" required class="form-control" name="username">
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Contact</label>
-                                    <input type="text" class="form-control" value="<?php echo $row->contact;?>"  name="contact">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email Address</label>
-                                    <input type="text" class="form-control" value="<?php echo $row->email;?>"  name="email">
-                                </div>
+                            ?>
+                                <form method ="POST"> 
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Username</label>
+                                        <input type="text" value="<?php echo $row->username;?>" required class="form-control" name="username">
+                                    </div>
                                 
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" value="<?php echo $row->password;?>" name="password" >
-                                </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Contact</label>
+                                        <input type="text" class="form-control" value="<?php echo $row->contact;?>"  name="contact">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email Address</label>
+                                        <input type="text" class="form-control" value="<?php echo $row->email;?>"  name="email">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" value="<?php echo $row->password;?>" name="password" >
+                                    </div>
 
-                                <button type="submit" name="updateUser" class="btn btn-success">Update User</button>
-                            </form>
+                                    <button type="submit" name="updateUser" class="btn btn-success">Update User</button>
+                                </form>
 
-                        <?php 
-                        
-                            }
-                        
-                        ?>
+                            <?php 
+                            
+                                }
+                            
+                            ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     
 </body>
 </html>

@@ -112,6 +112,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="userCss\userView.css">
     <title>Confirm Bookings</title>
 </head>
 <body>
@@ -167,7 +168,7 @@
                                 </div>
                                 
 
-                                <button type="submit" name="confirmBooking" class="btn btn-success">Confirm</button>
+                                <button type="submit" name="confirmBooking" class="btn btn-outline-success">Confirm</button>
                             </form>
 
                         <?php 
