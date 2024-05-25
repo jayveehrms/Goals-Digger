@@ -25,7 +25,7 @@
                 
                         mail($to, $subject, $message, $headers);
  
-                        header("Location: userVerifyPage.php?email=" . $email);
+                        header("Location: userRegisterOtp.php?email=" . $email);
                         exit(); 
  
                     } else {
@@ -46,6 +46,7 @@
 
         }
 
+        /*
         if(isset($_POST['vSubmit'])) {
             $email = mysqli_real_escape_string($conn, $_POST["email"]);
             $verification_code = mysqli_real_escape_string($conn, $_POST["verification_code"]);
@@ -83,7 +84,7 @@
            }
 
 
-        }
+        }*/
 
 
     }

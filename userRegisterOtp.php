@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vSubmit'])) {
         $vPassword = $getVal['password'];
         $vHash = password_hash($vPassword, PASSWORD_DEFAULT);
 
-        $insertVerified = "INSERT INTO bookinglist (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
-                          VALUES ('$vUsername', '$email', '$vMobile_number', '$vPVehicle', '$vPLocation', '$vDestination', '$vTravel_date_time')";
+        $insertVerified = "INSERT INTO emberusers (username, email, password, contact, loyalty_badge)
+                                  VALUES ('$vUsername', '$email', '$vHash', '$vContact', '$badge')";
         mysqli_query($conn, $insertVerified);
     } else {
         $verification_failed = true;
@@ -60,12 +60,6 @@ if (isset($_POST['vSuccess'])) {
     <div class="otp-card">
         <form method="POST">
             <h1>OTP Verification</h1>
-            <p>Code has been sent to 
-                <?php 
-                    $maskedEmail = substr_replace($_SESSION['vUser'], '******', 0, 6);
-                    echo $maskedEmail; 
-                ?>
-            </p>
             <input type="hidden" name="email" value="<?php echo htmlspecialchars($_GET['email'] ?? ''); ?>">
             <div class="otp-card-inputs">
                 <input type="text" maxlength="1" autofocus name="v1">
