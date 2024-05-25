@@ -63,7 +63,7 @@
             <p id="welCome" class="welcome-message">
             <?php 
                 if ($isLoggedIn) {
-                    echo "Welcome <p class='welcome-user'>{$username}!</p>";
+                    echo "Welcome, <p class='welcome-user'>{$username}!</p>";
                 } else {
                     echo "";
                     
@@ -84,9 +84,9 @@
             <div class="login-text">
                 <h2>Welcome!</h2>
                 <p><?php if($loginError) {?>
-                    <p>Wrong Email/Password!</p> 
+                    <p>Invalid Email or Password.</p> 
                 <?php } else { ?>
-                    <p>Create your account. For Free!</p>
+                    <p>Create your account.</p>
                 <?php } ?>
                 <a href="#" class="btn" id="signup-btn">Sign Up</a>
             </div>
@@ -110,7 +110,7 @@
                     </p>
                     <p id="wrongEmailPass"></p>
                     <p>
-                        <a href="">Forgot password?</a>
+
                     </p>
                 </form>
             </div>
@@ -246,7 +246,7 @@
         echo "
             <script>
                 document.getElementById('show-login').textContent = 'LogOut';
-                document.getElementById('welCome').textContent = 'Welcome {$wUser}!';
+                document.getElementById('welCome').textContent = 'Welcome, {$wUser}!';
 
             </script>
                 

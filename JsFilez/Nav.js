@@ -11,5 +11,5 @@ document.getElementById('nav-fleet').addEventListener('click', function() {
 });
 
 document.getElementById('nav-contact').addEventListener('click', function() {
-    document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
 });

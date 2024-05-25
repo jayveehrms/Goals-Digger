@@ -42,8 +42,8 @@
         <div class="ember-preview-container">
             <section class="home" id="home">
                 <div class="text">
-                    <h1><span>Welcome2</span> to <br>Ember Transport Services</h1>
-                    <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
+                    <h1><span>Ride</span> with <br>Ember Transport Services</h1>
+                    <p>Your comfort is our priority. We strive to deliver exceptional,<br> convenient, and high-standard transport services. <br> Step aboard, and allow us to guide you to your destination!</p><br>
                     <div class="home-btn">
                         <?php 
                             if(!empty($_SESSION['userID'])) {
@@ -67,8 +67,10 @@
         <div class="ember-preview-container">
             <section class="home" id="home">
                 <div class="text">
-                    <h1><span>Welcome3</span> to <br>Ember Transport Services</h1>
-                    <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
+                    <h1><span>You're safe </span> with <br>Ember Transport Services</h1>
+                    <p>Your safety is our commitment. We are dedicated to offering
+                    <br>secure, dependable, and top-notch transport services.
+                    <br> Trust us, and enjoy a worry-free journey to your destination!</p><br>
                     <div class="home-btn">
                         <?php 
                             if(!empty($_SESSION['userID'])) {
@@ -103,17 +105,17 @@
             </div>
             <div  class="ride-container">
                 <div class="box">
-                    <img class="bx bxs-map" src=/>
+                    <img class="bx bxs-map" src="Images\Icons\men-avatar-icon-removebg.png" >
                     <h2>Staff Transportation</h2> 
                     <p>Our dedicated staff shuttle service ensures timely and efficient transportation for employees, providing a convenient and reliable commuting solution tailored to your organization's needs.</p>
                 </div>
                 <div class="box">
-                    <img class="bx bxs-calendar-check" src=/>
+                    <img class="bx bxs-calendar-check" src="Images\Icons\airplane-icon-removebg.png">
                     <h2>Airport Transfer</h2> 
                     <p>Experience seamless airport transfers with our professional shuttle service, offering comfortable rides to and from the airport, with punctuality and customer satisfaction as our top priorities.</p>
                 </div>
                 <div class="box">
-                    <img class="bx bxs-calendar-star" src=/>
+                    <img class="bx bxs-calendar-star" src="Images\Icons\people-icon-removebg.png">
                     <h2>Group Function Transportation</h2> 
                     <p>Whether it's a corporate event, team-building retreat, or special occasion, our group function transportation service delivers safe and comfortable journeys for your entire group, ensuring an enjoyable experience.</p>
                 </div>
@@ -131,7 +133,7 @@
                 <img src="Images/Cars/sample-car_Toyota_Alphard.png" alt="Toyota Alphard">
                 </div>
                 <h3>Toyota Alphard</h3>
-                <p>Experience unparalleled luxury and sophistication in the Toyota Alphard, featuring opulent interiors, advanced technology, and a smooth, powerful ride that elevates every journey to new heights.</p>
+                <p>Experience unparalleled luxury and sophistication in the Toyota Alphard, featuring opulent interiors, advanced technology, and a smooth, powerful ride that elevates every journey to new heights. The Alphard sets a new standard for premium travel.</p>
                 <p>Capacity - 7 passengers</p>
                     <?php 
                         if(!empty($_SESSION['userID'])) {
@@ -176,7 +178,7 @@
                     <img src="Images/Cars/sample-car_Toyota-Super_Grandia_Elite.jpg" alt="Toyota Super Grandia Elite">
                 </div>
                 <h3>Toyota Super Grandia Elite</h3>
-                <p>Elevate your travel experience with the Toyota Super Grandia Elite, boasting luxurious design, and cutting-edge safety technology, ensuring a secure and seamless journey for you and your passengers.</p>
+                <p>Elevate your travel experience with the Toyota Super Grandia Elite, boasting luxurious design and cutting-edge safety technology, ensuring a secure and seamless journey for your passengers. The premium features provide comfort for every trip.</p>
                 <p>Capacity - 14 passengers</p>
                     <?php 
                         if(!empty($_SESSION['userID'])) {
@@ -245,7 +247,7 @@
                     <img src="Images/Cars/sample-car_Toyota_Innova.png" alt="Toyota Innova">
                 </div>
                 <h3>Toyota Innova</h3>
-                <p>The Toyota Innova redefines family travel with its spacious and adaptable cabin, modern features, and renowned reliability, providing comfort and convenience for every journey.</p>
+                <p>The Toyota Innova redefines family travel with its spacious and adaptable cabin, modern features, and renowned reliability, providing comfort and convenience for every journey. The efficient performance make it an ideal choice.</p>
                 <p>Capacity - 7 passengers</p>
                     <?php 
                         if(!empty($_SESSION['userID'])) {
@@ -311,7 +313,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="certification" id="certification">
         <div class="heading">
             <h1>Registration and Certifications</h1>
@@ -338,6 +340,23 @@
                     <img src="Images/Certification Logo/Taguig_logo.png" alt="Taguig Logo">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2>Contact Us</h2>
+            <p>We are here to assist you with any questions or concerns. Feel free to reach out to us!</p>
+            <div class="contact-details">
+                <p><strong>Phone:</strong> (+63) 927-330-1814 </p>
+                <p><strong>Email:</strong> Ember.transportservices@gmail.com</p>
+                <p><strong>Address:</strong> Habitat Village , Barangay Pinagsama, Taguig City</p>
+            </div>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/profile.php?id=100093242724191"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
         </div>
     </section>
 
