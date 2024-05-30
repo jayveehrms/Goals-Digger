@@ -559,8 +559,8 @@ color: #fff;
     
     }
 
-    .socials a:hover i{
-        color:#4169E1;
+    .socials li a:hover i{
+        color:#325cd9;
     }
     
     .footer-bottom{
