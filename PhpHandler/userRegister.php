@@ -7,13 +7,14 @@
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $contact = mysqli_real_escape_string($conn, $_POST['contact']);
             $password = mysqli_real_escape_string($conn, $_POST['password']);
+            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
             $cPassword = mysqli_real_escape_string($conn, $_POST['cpass']);
             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $timestamp = date('Y-m-d H:i:s');
 
             
                 $sqlPending = "INSERT INTO userverification (username, email, contact, password, verification_code, email_verified_at, time_duration)
-                          VALUES ('$username','$email','$contact', '$password', '$verification_code', NULL, '$timestamp')";
+                          VALUES ('$username','$email','$contact', '$hashedPass', '$verification_code', NULL, '$timestamp')";
                 try{
 
                     if(mysqli_query($conn, $sqlPending)) {

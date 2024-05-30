@@ -4,50 +4,32 @@
     if (isset($_POST['approve_booking'])) {
         $aid_id = mysqli_real_escape_string($conn, $_GET['aid_id']);
 
-        $sql = "SELECT * FROM bookinglist WHERE aid_id='$aid_id'";
+        $sql = "SELECT * FROM guest_bookings WHERE book_id='$aid_id'";
         $result = mysqli_query($conn, $sql);
+        $setPVehicle = mysqli_fetch_assoc($result);
+        $getPVehicle = $setPVehicle['preferred_vehicle'];
 
-        if (mysqli_num_rows($result) > 0) {
-            $setPVehicle = mysqli_fetch_assoc($result);
-            if ($setPVehicle) {
-                $getPVehicle = $setPVehicle['preferred_vehicle'];
-                $getBUserId = $setPVehicle['book_id'];
 
-                $getUser = "SELECT * FROM emberusers WHERE user_id = '$getBUserId'";
-                $queryUser = mysqli_query($conn, $getUser);
-                $fetchBadge = mysqli_fetch_assoc($queryUser);
+        $sqlUpdate = "UPDATE guest_bookings SET status='Approved' WHERE book_id='$aid_id'";
 
-                if ($fetchBadge && $fetchBadge['loyalty_badge'] < 3) {
-                    $updateBadge = "UPDATE emberusers SET loyalty_badge = loyalty_badge + 1 WHERE user_id = '$getBUserId'";
-                    mysqli_query($conn, $updateBadge);
-                }
+            if (mysqli_query($conn, $sqlUpdate)) {
+                $newVStatus = "Booked";
+                $updateVehicle = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";
+                mysqli_query($conn, $updateVehicle);
 
-                $sqlUpdate = "UPDATE bookinglist SET status='Approved' WHERE aid_id='$aid_id'";
+                $to = $setPVehicle['email'];
+                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                $subject = "Booking Approved!";
+                $message = "Thank you for booking!";
+                mail($to, $subject, $message, $headers);
 
-                if (mysqli_query($conn, $sqlUpdate)) {
-                    $newVStatus = "Booked";
-                    $updateVehicle = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";
-                    mysqli_query($conn, $updateVehicle);
+                header("Location: AdminDashboard.php");
+                exit();
 
-                    $to = $setPVehicle['email'];
-                    $headers = "Content-Type: text/html; charset=UTF-8\r\n";
-                    $subject = "Booking Approved!";
-                    $message = "Thank you for booking!";
-                    mail($to, $subject, $message, $headers);
-
-                    header("Location: AdminDashboard.php");
-                    exit();
-
-                } else {
-                    echo "Error approving booking: " . mysqli_error($conn);
-                }
             } else {
-                echo "Error fetching booking details.";
+                    echo "Error approving booking: " . mysqli_error($conn);
             }
-        } else {
-            echo "No record found.";
-        }
-        mysqli_close($conn);
+            
     }
 
 
@@ -73,7 +55,7 @@
                     <?php
                     $aid = $_GET['aid_id'];
                     if ($aid) {
-                        $ret = "SELECT * FROM bookinglist WHERE aid_id=?";
+                        $ret = "SELECT * FROM guest_bookings WHERE book_id=?";
                         $stmt = $conn->prepare($ret);
                         $stmt->bind_param('i', $aid);
                         $stmt->execute();

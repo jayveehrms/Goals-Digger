@@ -37,7 +37,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM embervehicles";
+                                        $ret = "SELECT * FROM embervehicles WHERE v_status = 'Available' OR v_status = 'Booked'";
                                         $stmt = $conn->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();

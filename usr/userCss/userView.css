@@ -59,6 +59,12 @@ li b {
     color: #333;
 }
 
+#select{
+    width: 15%;
+    padding: 12px 15px;
+    border: 1px solid;
+    border-radius: 5px;
+}
 /* Form Styles */
 .form-group {
     margin-bottom: 20px;

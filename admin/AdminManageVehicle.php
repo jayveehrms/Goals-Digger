@@ -32,7 +32,7 @@
                 <?php include("AdminNav.php"); ?>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-table"></i> Users
+                        <i class="fas fa-table"></i> Vehicles
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $ret = "SELECT * FROM embervehicles";
+                                        $ret = "SELECT * FROM embervehicles WHERE v_status='Available' OR v_status='Booked'";
                                         $stmt = $conn->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();
@@ -72,10 +72,7 @@
                                         </td>
                                         <td>
                                             <a href="update-vehicle.php?v_id=<?php echo $row->v_id;?>" class="badge badge-success">Update</a>
-                                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                                <input type="hidden" name="vID" value="<?php echo $row->v_id; ?>">
-                                                <button type="submit" name="delete" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</button>
-                                            </form>
+                                            <a href="archive-vehicle.php?v_id=<?php echo $row->v_id;?>" class="badge badge-warning">Archive</a>
                                             </i>
                                         </td>
                                     </tr>

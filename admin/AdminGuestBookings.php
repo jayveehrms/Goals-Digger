@@ -1,16 +1,9 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
-    $getStatus = $_GET['status'];
-    /*
-        Note*
-        Add the nav bar for the dashboards with the logout feature
-        as well as modify the navbar for booking, about us, and homepage
-        so that it shows the username of the logged in user with the 
-        logout feature.
-    
-    */
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +13,6 @@
     <link rel="stylesheet" href="adminCss\adminstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
-
 </head>
 <body>
 <?php include("AdminSideNav.php"); ?>
@@ -29,7 +21,7 @@
             <?php include("AdminNav.php"); ?>
             <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-table"></i> <?php echo $getStatus;?>
+                        <i class="fas fa-table"></i> Guest Bookings
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -46,47 +38,23 @@
                                         <th>Destination</th>
                                         <th>Travel Date/Time</th>
                                         <th>Status</th>
-                                        <?php
-                                            if($getStatus == 'Disapproved' || $getStatus == 'Cancelled') {
-
-
-                                            } else {
-                                        
-                                        ?>
                                         <th>Manage</th>
-                                        <?php 
-                                            }
-                                        
-                                        ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret;
-                                    if($getStatus == 'Approved') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Approved'";
-
-                                    } else if($getStatus == 'Disapproved') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Disapproved'";
-
-                                    } else if($getStatus == 'Pending') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Pending'";
-                                        
-                                    } else if($getStatus == 'Cancelled') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Cancelled'";
-                                        
-                                    }
-
-                                    //$ret = "SELECT * FROM bookinglist WHERE status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled' OR status = 'Approved'";
+                                    $ret = "SELECT * FROM guest_bookings WHERE status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled' OR status = 'Approved'";
                                     $stmt = $conn->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     $cnt = 1;
+                                    
                                     while ($row = $res->fetch_object()) {
+                                        
                                     ?>
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
-                                            <td><?php echo $row->book_id; ?></td>
+                                            <td><?php echo $row->book_id;?></td>
                                             <td><?php echo $row->username; ?></td>
                                             <td><?php echo $row->email; ?></td>
                                             <td><?php echo $row->mobile_number; ?></td>
@@ -98,46 +66,38 @@
                                                 <?php 
                                                 if ($row->status == "Pending") { 
                                                     echo '<span class="badge badge-warning">' . $row->status . '</span>'; 
-                                                    
-                                                } else if ($row->status == "Disapproved"){
+                                                } else if ($row->status == "Disapproved") {
                                                     echo '<span class="badge badge-dark">' . $row->status . '</span>';
-    
-                                                } else if ($row->status == "Cancelled"){
+                                                } else if ($row->status == "Cancelled") {
                                                     echo '<span class="badge badge-warning">' . $row->status . '</span>';
-
-                                                }else { 
-                                                    echo '<span class="badge badge-success">' . $row->status . '</span>'; 
+                                                } else { 
+                                                    echo '<span class="badge badge-success">' . $row->status . '</span>';
                                                 }
                                                 ?>
                                             </td>
                                             <td>
-                                                <?php 
+                                            <?php 
 
-                                                    if($row->status == "Pending") {
-                                                        
-                                                
-                                                ?>
-                                                    <a href="approve-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
-                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
-                                                <?php 
-                                                    } else if ($row->status == "Approved"){
-                                                
-                                                ?>
-                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                                if($row->status == "Pending") {
 
-                                                <?php 
-                                                    }
-                                                
-                                                ?>
-                                            </i>
+                                            ?>
+                                                <a href="AdminGuestApprove.php?aid_id=<?php echo $row->book_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
+                                                <a href="AdminGuestDisapprove.php?aid_id=<?php echo $row->book_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                            <?php 
+                                                } else if ($row->status == "Approved"){
+
+                                            ?>
+                                                <a href="disapprove-booking.php?aid_id=<?php echo $row->book_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+
+                                            <?php 
+                                                }
+
+                                            ?>
                                             </td>
                                         </tr>
                                     <?php 
-                                    
                                         $cnt++; 
-                                        
-                                        } 
-                                        
+                                    } 
                                     ?>
                                 </tbody>
                             </table>
@@ -155,3 +115,52 @@
     
 </body>
 </html>
+
+<?php
+
+    /*
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['ApproveB'])) {    
+            $guestBookId = $getBookId;
+
+            $approveGuest = "UPDATE guest_bookings SET status = 'Approved' WHERE book_id = '$guestBookId'";
+            
+            if (mysqli_query($conn, $approveGuest)) {
+                $newVStatus = "Booked";
+                $updateVehicle = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getprefVehicle'";
+                mysqli_query($conn, $updateVehicle);
+
+                $to = $getGuestEmail;
+                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                $subject = "Booking Approved!";
+                $message = "Thank you for booking!";
+                mail($to, $subject, $message, $headers);
+
+            } else {
+                echo "Error approving booking: " . mysqli_error($conn);
+            }
+
+        
+        } else if (isset($_POST['DisapproveB'])) {
+            $guestBookId = $getBookId;
+
+            $approveGuest = "UPDATE guest_bookings SET status = 'Disapproved' WHERE book_id = '$guestBookId'";
+            
+            if (mysqli_query($conn, $approveGuest)) {
+
+                $to = $getGuestEmail;
+                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                $subject = "Booking Disapproved!";
+                $message = "Sorry for we have disapproved your booking <br> You can contact us for more concerns <b>09999999</b>";
+                mail($to, $subject, $message, $headers);
+
+            } else {
+                echo "Error approving booking: " . mysqli_error($conn);
+            }
+
+        }
+
+    }
+
+    */
+?>

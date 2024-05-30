@@ -1,18 +1,6 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
-    if(isset($_POST['delete'])){
-        $userEmail = mysqli_real_escape_string($conn, $_POST['userEmail']);
-        $sqlDeleteUser = "DELETE FROM emberusers WHERE email='$userEmail'";
-        if (mysqli_query($conn, $sqlDeleteUser)) {
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
-
-        }
-
-
-    }
-
 
 ?>
 <!DOCTYPE html>
@@ -65,10 +53,7 @@
                                             <td><?php echo $row->contact; ?></td>
                                             <td>
                                                 <a href="update-user.php?email=<?php echo $row->email;?>" class="badge badge-success"><i class="fa fa-user-edit"></i> Update</a>
-                                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                                    <input type="hidden" name="userEmail" value="<?php echo $row->email; ?>">
-                                                    <button type="submit" name="delete" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</button>
-                                                </form>
+                                                
                                             </i>
                                             </td>
                                         </tr>

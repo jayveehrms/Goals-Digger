@@ -17,22 +17,26 @@
             <div class="item">
                 <a class="sub-btn"><i class="fas fa-fw fa-users"></i>Users<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="AdminViewUsers.php" class="sub-item">View</a>
+                    <a href="AdminAddUsers.php" class="sub-item">Add</a>
                     <a href="AdminManageUsers.php" class="sub-item">Manage</a>
                 </div>
             </div>
             <div class="item">
-                <a href="#" class="sub-btn"><i class="fas fa-fw fa-book"></i>Bookings<i class="fas fa-angle-right dropdown"></i></a>
+                <a href="#" class="sub-btn"><i class="fas fa-fw fa-book"></i>Manage Bookings<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="AdminDashboard.php" class="sub-item">View</a>
-                    <a href="AdminManageBookings.php" class="sub-item">Manage</a>
+                    <a href="AdminManageBookings.php?status=<?php echo "Approved";?>" class="sub-item">Manage Approved</a>
+                    <a href="AdminManageBookings.php?status=<?php echo "Disapproved";?>" class="sub-item">Manage Disapproved</a>
+                    <a href="AdminManageBookings.php?status=<?php echo "Pending";?>" class="sub-item">Manage Pending</a>
+                    <a href="AdminManageBookings.php?status=<?php echo "Cancelled";?>" class="sub-item">Manage Cancelled</a>
+                    <a href="AdminGuestBookings.php" class="sub-item">Manage Guest</a>
                 </div>
             </div>
             <div class="item">
                 <a href="#" class="sub-btn"><i class="fas fa-fw fa-car"></i>Vehicle<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="AdminViewVehicles.php" class="sub-item">View</a>
+                    <a href="AdminAddVehicle.php" class="sub-item">Add</a>
                     <a href="AdminManageVehicle.php" class="sub-item">Manage</a>
+                    <a href="AdminViewVehicles.php" class="sub-item">Archived</a>
                 </div>
             </div>
         </div>

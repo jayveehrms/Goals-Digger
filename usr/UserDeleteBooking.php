@@ -59,6 +59,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="userCss\userView.css">
     <title>Cancel Booking</title>
 </head>
 <body>
@@ -87,7 +88,7 @@
                         
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" readonly value="<?php echo $row['email'];?>" name="cEmail">
+                            <input id="select" type="email" readonly value="<?php echo $row['email'];?>" name="cEmail">
                         </div>
                         <div class="form-group">
                             <label>Contact</label>
@@ -122,7 +123,7 @@
 
                         
 
-                        <button type="submit" name="cancelBooking" class="btn btn-danger">Cancel Booking</button>
+                        <button type="submit" name="cancelBooking" class="btn btn-outline-success">Cancel Booking</button>
                     </form>
                     <?php 
                     

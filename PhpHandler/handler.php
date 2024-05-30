@@ -52,6 +52,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
     }
 
     $delete_unverified = "DELETE FROM bookingverification WHERE time_duration < DATE_SUB(NOW(), INTERVAL 1 DAY)";
@@ -62,6 +77,12 @@
 
     $deleteApproved = "DELETE FROM bookinglist WHERE time_duration < DATE_SUB(NOW(), INTERVAL 30 DAY) AND status = 'Approved'";
     mysqli_query($conn, $deleteApproved);
+
+    $deleteGuestBooking = "DELETE FROM guest_bookings WHERE time_duration < DATE_SUB(NOW(), INTERVAL 7 DAY) AND (status = 'Disapproved' OR status = 'Cancelled')";
+    mysqli_query($conn, $deleteGuestBooking);
+
+    $deleteGuestApproved = "DELETE FROM guest_bookings WHERE time_duration < DATE_SUB(NOW(), INTERVAL 30 DAY) AND status = 'Approved'";
+    mysqli_query($conn, $deleteGuestApproved);
 
 
     //Note to self* Continue on saturday.

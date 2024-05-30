@@ -30,12 +30,13 @@
                                         <th>Name</th>
                                         <th>Registration No.</th>
                                         <th>Passenger Seats</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $ret = "SELECT * FROM embervehicles";
+                                        $ret = "SELECT * FROM embervehicles WHERE v_status = 'Available' OR v_status = 'Booked'";
                                         $stmt = $conn->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();
@@ -48,6 +49,14 @@
                                         <td><?php echo $row->v_name?></td>
                                         <td><?php echo $row->v_reg_no; ?></td>
                                         <td><?php echo $row->v_pass_no; ?></td>
+                                        <td><?php 
+                                                if($row->v_status == "Available"){ 
+                                                    echo '<span class = "badge badge-success">'.$row->v_status.'</span>'; 
+                                                } else { 
+                                                    echo '<span class = "badge badge-danger">'.$row->v_status.'</span>';
+                                                }
+                                            ?>
+                                        </td>
                                         <td>
                                             <a href="UserConfirmBooking.php?v_id=<?php echo $row->v_id;?>" class="badge badge-success">Book</a>
                                         </td>

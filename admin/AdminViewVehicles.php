@@ -1,5 +1,6 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
+    //the file should be named AdminViewArchived but i am too lazy to modify other affect files
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
                 <?php include("AdminNav.php"); ?>
                 <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fas fa-table"></i> Users
+                            <i class="fas fa-table"></i> Archived
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -33,11 +34,12 @@
                                             <th>Passenger Seats</th>
                                             <th>Type</th>
                                             <th>Status</th>
+                                            <th>Reason/Fault</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM embervehicles";
+                                        $ret = "SELECT * FROM embervehicles WHERE v_status='Archived'";
                                         $stmt = $conn->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();
@@ -55,7 +57,9 @@
                                                             echo '<span class = "badge badge-success">'.$row->v_status.'</span>'; 
                                                         } else { 
                                                             echo '<span class = "badge badge-danger">'.$row->v_status.'</span>';
-                                                        }?></td>
+                                                        }?>
+                                                </td>
+                                                <td><?php echo $row->fault_archive; ?></td>
                                             </tr>
                                         <?php $cnt++; } ?>
                                     </tbody>

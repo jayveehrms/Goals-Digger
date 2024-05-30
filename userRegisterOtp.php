@@ -31,10 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vSubmit'])) {
         $vContact = $getVal['contact'];
         $badge = 0;
         $vPassword = $getVal['password'];
-        $vHash = password_hash($vPassword, PASSWORD_DEFAULT);
 
         $insertVerified = "INSERT INTO emberusers (username, email, password, contact, loyalty_badge)
-                                  VALUES ('$vUsername', '$email', '$vHash', '$vContact', '$badge')";
+                                  VALUES ('$vUsername', '$email', '$vPassword', '$vContact', '$badge')";
         mysqli_query($conn, $insertVerified);
     } else {
         $verification_failed = true;

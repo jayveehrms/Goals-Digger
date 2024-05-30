@@ -63,10 +63,6 @@
                                         <input type="text" class="form-control" value="<?php echo $row->email;?>"  name="email">
                                     </div>
                                     
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" value="<?php echo $row->password;?>" name="password" >
-                                    </div>
 
                                     <button type="submit" name="updateUser" class="btn btn-success">Update User</button>
                                 </form>

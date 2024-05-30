@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: admin/AdminDashBoard.php");
             exit();
 
-        } elseif ($user && password_verify($userPass, $user['password'])) {
+        } 
+        
+        if ($user && password_verify($userPass, $user['password'])) {
             $_SESSION['userID'] = $user['user_id'];
             header("Location: homepage.php");
             exit();

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vSubmit'])) {
         $vDestination = $getVal['destination'];
         $vTravel_date_time = $getVal['travel_date_time'];
 
-        $insertVerified = "INSERT INTO bookinglist (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
+        $insertVerified = "INSERT INTO guest_bookings (username, email, mobile_number, preferred_vehicle, pickup_location, destination, travel_date_time)
                           VALUES ('$vUsername', '$email', '$vMobile_number', '$vPVehicle', '$vPLocation', '$vDestination', '$vTravel_date_time')";
         mysqli_query($conn, $insertVerified);
     } else {

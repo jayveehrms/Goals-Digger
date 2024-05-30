@@ -13,7 +13,7 @@
 
     <div class="side-bar">
         <div class="menu">
-            <div class="item"><a href="UserDashBoard.php"><i class="fas fa-desktop"></i>Dashboard</a></div>
+            <div class="item"><a href="UserBookVehicle.php"><i class="fas fa-car"></i>Book Vehicle</a></div>
             <div class="item">
                 <a class="sub-btn"><i class="fas fa-fw fa-users"></i>My Profile<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
@@ -23,7 +23,6 @@
             <div class="item">
                 <a href="#" class="sub-btn"><i class="fas fa-fw fa-book"></i>Bookings<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="UserBookVehicle.php" class="sub-item">Add</a>
                     <a href="UserViewBookings.php" class="sub-item">View</a>
                     <a href="UserManageBooking.php" class="sub-item">Manage</a>
                 </div>

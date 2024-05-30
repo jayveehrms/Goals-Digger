@@ -1,6 +1,5 @@
 <?php 
     include("PhpHandler\handler.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +60,10 @@
             </div>
             <div class="booking-form_container">
                 <div class="booking-form">
-                    <input required type="date" name="date">
+                    <input required type="date" name="date" id="datePicker">
                 </div>
                 <div class="booking-form">
-                    <input type="time" name="time">
+                    <input type="time" name="time" id="timePicker">
                 </div>
             </div>
             <input type="submit" class="book-btn" value="Reserve Now" name="submit">
@@ -97,7 +96,7 @@
 </section>
 
 <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', (event) => {
         const urlParams = new URLSearchParams(window.location.search);
         const selectedCar = urlParams.get('car');
 
@@ -105,44 +104,56 @@
             const vehicleSelect = document.getElementById('vehicleSelect');
             vehicleSelect.value = selectedCar;
 
-            // Trigger change event to update car info
+            
             const event = new Event('change');
             vehicleSelect.dispatchEvent(event);
         }
+        
+        const datePicker = document.getElementById('datePicker');
+        const timePicker = document.getElementById('timePicker');
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+
+        datePicker.min = `${year}-${month}-${day}`;
+        timePicker.min = `${hours}:${minutes}`;
     });
-        document.getElementById('vehicleSelect').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
+
+    document.getElementById('vehicleSelect').addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        
+        if (selectedOption.value === "Select vehicle") {
+            document.getElementById('carImage').src = " ";
+            document.getElementById('carName').textContent = "";
+            document.getElementById('carType').textContent = "";
+            document.getElementById('carTransmission').textContent = "";
+            document.getElementById('carCapacity').textContent = "";
+        } else {
+            const carImage = selectedOption.getAttribute('data-img');
+            const carType = selectedOption.getAttribute('data-type');
+            const carTransmission = selectedOption.getAttribute('data-transmission');
+            const carCapacity = selectedOption.getAttribute('data-capacity');
             
-            if (selectedOption.value === "Select vehicle") {
-                document.getElementById('carImage').src = " ";
-                document.getElementById('carName').textContent = "";
-                document.getElementById('carType').textContent = "";
-                document.getElementById('carTransmission').textContent = "";
-                document.getElementById('carCapacity').textContent = "";
-            } else {
-                const carImage = selectedOption.getAttribute('data-img');
-                const carType = selectedOption.getAttribute('data-type');
-                const carTransmission = selectedOption.getAttribute('data-transmission');
-                const carCapacity = selectedOption.getAttribute('data-capacity');
-                
-                if (carImage) {
-                    document.getElementById('carImage').src = carImage;
-                }
-                if (carType) {
-                    document.getElementById('carType').textContent = carType;
-                }
-                if (carTransmission) {
-                    document.getElementById('carTransmission').textContent = carTransmission;
-                }
-                if (carCapacity) {
-                    document.getElementById('carCapacity').textContent = "Capacity: " + carCapacity;
-                }
-                document.getElementById('carName').textContent = selectedOption.value;
+            if (carImage) {
+                document.getElementById('carImage').src = carImage;
             }
-        });
-   
+            if (carType) {
+                document.getElementById('carType').textContent = carType;
+            }
+            if (carTransmission) {
+                document.getElementById('carTransmission').textContent = carTransmission;
+            }
+            if (carCapacity) {
+                document.getElementById('carCapacity').textContent = "Capacity: " + carCapacity;
+            }
+            document.getElementById('carName').textContent = selectedOption.value;
+        }
+    });
 </script>
     <?php include("UI/footer.php"); ?>  
 </body>
 </html>
-

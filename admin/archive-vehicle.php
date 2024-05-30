@@ -1,14 +1,14 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
-    if(isset($_POST['updateVehicle'])) {
+    if(isset($_POST['archiveMe'])) {
         $v_id = mysqli_real_escape_string($conn, $_GET['v_id']);
         $v_name = mysqli_real_escape_string($conn, $_POST['vName']);
         $v_reg_no = mysqli_real_escape_string($conn, $_POST['vRegNo']);
         $v_type = mysqli_real_escape_string($conn, $_POST['vType']);
-        $v_status = mysqli_real_escape_string($conn, $_POST['vStatus']);
+        $fault = mysqli_real_escape_string($conn, $_POST['fault']);
 
-        $queryUpdate = "UPDATE embervehicles SET v_name='$v_name', v_reg_no='$v_reg_no', v_type='$v_type', v_status='$v_status' WHERE v_id='$v_id'";
+        $queryUpdate = "UPDATE embervehicles SET v_status='Archived', fault_archive='$fault' WHERE v_id='$v_id'";
         $vUpdate = mysqli_query($conn, $queryUpdate);
 
         if ($vUpdate) {
@@ -64,16 +64,13 @@
                                     <label>Vehicle Type</label>
                                     <input type="text" value="<?php echo $row->v_type;?>"  name="vType" disabled>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label>Status</label>
-                                        <select id="select" name="vStatus">
-                                            <option  value="Available">Available</option>
-                                            <option  value="Booked">Booked</option>
-                                        </select>
+                                    <label>Reason/Fault</label>
+                                    <textarea name="fault" cols="170" rows="10"></textarea>
                                 </div>
+                    
 
-                                <button type="submit" name="updateVehicle" class="btn btn-success">Update status</button>
+                                <button type="submit" name="archiveMe" class="btn badge-warning"><b>Archive Vehicle</b></button>
                             </form>
 
                         <?php 

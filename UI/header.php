@@ -48,12 +48,12 @@
             <li><a id="nav-services">Services</a></li>
             <li><a href="about.php">About us</a></li>
             <li><a id="nav-fleet">Fleet</a></li>
-            <li><a id="nav-contact">Contact</a></li>
+            <li><a id="nav-contact" href="#contact">Contact</a></li>
             <?php 
                 if(!empty($_SESSION['userID'])) {
 
             ?>
-            <li><a href="usr\UserDashBoard.php">Dashboard</a></li>
+            <li><a href="usr\UserBookVehicle.php">Dashboard</a></li>
             <?php 
                 }
             
