@@ -27,7 +27,6 @@
     }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,8 +44,8 @@
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
             <li><a id="nav-homepage" href="homepage.php">Home</a></li>
-            <li><a id="nav-services">Services</a></li>
-            <li><a href="about.php">About us</a></li>
+            <li><a id="nav-about" href="#about">About us</a></li>
+            <li><a id="nav-services">Services</a></li> 
             <li><a id="nav-fleet">Fleet</a></li>
             <li><a id="nav-contact" href="#contact">Contact</a></li>
             <?php 
@@ -110,11 +109,12 @@
                     </p>
                     <p id="wrongEmailPass"></p>
                     <p>
-
                     </p>
                 </form>
+                <p>By submitting this form, you agree to our <a style="color: blue;" href="terms.php">Terms & Conditions</a> and <a style="color: blue;" href="privacy-policy.php">Privacy Policy.</a></p>
             </div>
         </div>
+        
     </div>
 </div>
 
@@ -155,7 +155,11 @@
                         </div>
 
                         <input type="submit" name="register" id="submit" value="Signup" class="btn">
+                        <br>
+                        <p style="color: black;" >By submitting this form, you agree to our <a style="color: blue;" href="terms.php">Terms & Conditions</a> and <a style="color: blue;" href="privacy-policy.php">Privacy Policy.</a></p>
+
                     </div>
+                    
                 </form>
             </div>
         </div>

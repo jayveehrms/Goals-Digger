@@ -66,6 +66,8 @@
                     <input type="time" name="time" id="timePicker">
                 </div>
             </div>
+            <br>
+            <p>By submitting this form, you agree to our <a style="color: blue;" href="terms.php">Terms & Conditions</a> and <a style="color: blue;" href="privacy-policy.php">Privacy Policy.</a></p>
             <input type="submit" class="book-btn" value="Reserve Now" name="submit">
         </div>
     </form>

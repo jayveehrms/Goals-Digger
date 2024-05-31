@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="adminCss\adminstyle.css">
     <link rel="stylesheet" href="..\css\checkverify.css">
     <link rel="stylesheet" href="..\css\wrongverify.css">
+    <link rel="stylesheet" href="adminCss\adminView.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
 
@@ -94,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email">
+                            <input id="select" type="email" name="email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
@@ -102,7 +103,7 @@
                         </div>
                         <div class="form-group">
                             <label>Contact</label>
-                            <input type="number" name="contact">
+                            <input id="select" type="number" name="contact">
                         </div>
                         <div class="form-group">
                             <label>User Type</label>
