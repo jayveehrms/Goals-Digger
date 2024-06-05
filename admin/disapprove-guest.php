@@ -4,27 +4,20 @@
     if (isset($_POST['disapprove'])) {
         $aid_id = mysqli_real_escape_string($conn, $_GET['aid_id']);
         
-        $sql = "SELECT * FROM bookinglist WHERE aid_id='$aid_id'";
+        $sql = "SELECT * FROM guest_bookings WHERE aid_id='$aid_id'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             $setPVehicle = mysqli_fetch_assoc($result);
             $getPVehicle = $setPVehicle['preferred_vehicle'];
-            $getBUserId = $setPVehicle['book_id'];
-
-            $getUser = "SELECT * FROM emberusers WHERE user_id = '$getBUserId'";
-            $queryUser = mysqli_query($conn, $getUser);
-            $fetchBadge = mysqli_fetch_assoc($queryUser);
-
-            if ($fetchBadge['loyalty_badge'] > 0 && $setPVehicle['status'] == 'Approved') {
-                $updateBadge = "UPDATE emberusers SET loyalty_badge = loyalty_badge - 1 WHERE user_id = '$getBUserId'";
-                mysqli_query($conn, $updateBadge);
-
-            }
-
-            $sqlUpdate = "UPDATE bookinglist SET status='Disapproved' WHERE aid_id='$aid_id'";
+            
+            $sqlUpdate = "UPDATE guest_bookings SET status='Disapproved' WHERE aid_id='$aid_id'";
 
             if (mysqli_query($conn, $sqlUpdate)) {
+                $newVStatus = "Available";
+                $updateVehicle = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";
+                mysqli_query($conn, $updateVehicle);
+
                 $to = $setPVehicle['email'];
                 $headers = "Content-Type: text/html; charset=UTF-8\r\n";
                 $subject = "Booking Disapproved!";
@@ -68,7 +61,7 @@
                 <div class="card-body">
                     <?php
                     $aid = $_GET['aid_id'];
-                    $ret = "SELECT * FROM bookinglist WHERE aid_id=?";
+                    $ret = "SELECT * FROM guest_bookings WHERE aid_id=?";
                     $stmt = $conn->prepare($ret);
                     $stmt->bind_param('i', $aid);
                     $stmt->execute();

@@ -17,9 +17,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Guest bookings</title>
-    <link rel="stylesheet" href="adminCss\adminstyles.css">
+    <link rel="stylesheet" href="adminCss/adminstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 </head>
 <body>
@@ -43,7 +44,7 @@
                     <i class="fas fa-table"></i> <?php echo $getStatus == '' ? 'All Guest Bookings' : 'Manage ' . $getStatus . ' Bookings'; ?>
                 </div>
                 <div class="card-body">
-                    
+                    <button id="exportButton" class="btn btn-primary">Export to PDF</button>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -70,7 +71,6 @@
                                     if (!empty($getStatus)) {
                                         $sql .= " WHERE status = '$getStatus'";
                                     }
-
                                  
                                     $stmt = $conn->prepare($sql);
                                     $stmt->execute();
@@ -81,7 +81,7 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
-                                            <td><?php echo $row->book_id; ?></td>
+                                            <td><?php echo $row->aid_id; ?></td>
                                             <td><?php echo $row->username; ?></td>
                                             <td><?php echo $row->email; ?></td>
                                             <td><?php echo $row->mobile_number; ?></td>
@@ -111,13 +111,13 @@
                                                     if($row->status == "Pending") {
                                                         
                                                 ?>
-                                                    <a href="approve-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
-                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                                    <a href="approve-guest.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-success"><i class = "fa fa-check"></i> Approve</a>
+                                                    <a href="disapprove-guest.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
                                                 <?php 
                                                     } else if ($row->status == "Approved"){
                                                 
                                                 ?>
-                                                    <a href="disapprove-booking.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
+                                                    <a href="disapprove-guest.php?aid_id=<?php echo $row->aid_id;?>" class="badge badge-danger"><i class ="fa fa-trash"></i> Disapprove</a>
 
                                                 <?php 
                                                     }
@@ -158,7 +158,25 @@
                 
                 window.location.href = 'AdminGuestBookings.php?status=' + status;
             });
+
+            document.getElementById('exportButton').addEventListener('click', function() {
+                var element = document.getElementById('dataTable');
+
+                var opt = {
+                    margin:       0.3,
+                    filename:     'Guest-bookings-records.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'in', format: 'tabloid', orientation: 'landscape' } // Use tabloid or A3 for larger size
+                };
+
+                html2pdf().from(element).set(opt).save();
+            });
+
+
         });
+
+
     </script>
     
 </body>

@@ -494,8 +494,12 @@ nav {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+}
+
+.card-body input[type="text"] {
+  width: 165vh; 
 }
 
 .card-body-icon {
@@ -532,8 +536,8 @@ nav {
 }
 
 .badge-light {
-  color: #000;
-  background-color: #f8f9fa;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3); /* Use rgba to set background opacity */
 }
 
 .text-white {

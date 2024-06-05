@@ -65,7 +65,7 @@
                         ?>
                         <div class="mr-5"><span class="badge badge-light"><?php echo $user;?></span> Users</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="admin-view-user.php">
+                    <a class="card-footer text-white clearfix small z-1" href="AdminViewUsers.php">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                             <i class="fas fa-angle-right"></i>
@@ -88,7 +88,7 @@
                         ?>
                         <div class="mr-5"><span class="badge badge-light"><?php echo $vehicle;?></span> Vehicles</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="admin-view-vehicle.php">
+                    <a class="card-footer text-white clearfix small z-1" href="AdminManageVehicle.php">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                             <i class="fas fa-angle-right"></i>
@@ -115,7 +115,7 @@
                         ?>
                         <div class="mr-5"><span class="badge badge-light"><?php echo $book;?></span> Bookings</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="admin-view-booking.php">
+                    <a class="card-footer text-white clearfix small z-1" href="AdminManageBookings.php">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                             <i class="fas fa-angle-right"></i>

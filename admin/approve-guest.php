@@ -1,32 +1,43 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
-    if (isset($_POST['disapprove_booking'])) {
+    if (isset($_POST['approve_booking'])) {
         $aid_id = mysqli_real_escape_string($conn, $_GET['aid_id']);
 
-        $sql = "SELECT * FROM guest_bookings WHERE book_id='$aid_id'";
+        $sql = "SELECT * FROM guest_bookings WHERE aid_id='$aid_id'";
         $result = mysqli_query($conn, $sql);
-        $setPVehicle = mysqli_fetch_assoc($result);
-        $getPVehicle = $setPVehicle['preferred_vehicle'];
 
+        if (mysqli_num_rows($result) > 0) {
+            $setPVehicle = mysqli_fetch_assoc($result);
+            if ($setPVehicle) {
+                $getPVehicle = $setPVehicle['preferred_vehicle'];
 
-        $sqlUpdate = "UPDATE guest_bookings SET status='Disapproved' WHERE book_id='$aid_id'";
+                $sqlUpdate = "UPDATE guest_bookings SET status='Approved' WHERE aid_id='$aid_id'";
 
-            if (mysqli_query($conn, $sqlUpdate)) {
+                if (mysqli_query($conn, $sqlUpdate)) {
+                    $newVStatus = "Booked";
+                    $updateVehicle = "UPDATE embervehicles SET v_status = '$newVStatus' WHERE v_name = '$getPVehicle'";
+                    mysqli_query($conn, $updateVehicle);
 
-                $to = $setPVehicle['email'];
-                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
-                $subject = "Booking Disapproved!";
-                $message = "Sorry for we have disapproved your booking <br> You can contact us for more concerns <b>09999999</b>";
-                mail($to, $subject, $message, $headers);
+                    $to = $setPVehicle['email'];
+                    $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+                    $subject = "Booking Approved!";
+                    $message = "Thank you for booking!";
+                    mail($to, $subject, $message, $headers);
 
-                header("Location: AdminDashboard.php");
-                exit();
+                    header("Location: AdminDashboard.php");
+                    exit();
 
+                } else {
+                    echo "Error approving booking: " . mysqli_error($conn);
+                }
             } else {
-                    echo "Error disapproving booking: " . mysqli_error($conn);
+                echo "Error fetching booking details.";
             }
-            
+        } else {
+            echo "No record found.";
+        }
+        mysqli_close($conn);
     }
 
 
@@ -37,7 +48,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminCss\adminView.css">
-    <title>Document</title>
+    <title>Approve</title>
 </head>
 <body>
     <?php include("AdminSideNav.php"); ?>
@@ -46,13 +57,13 @@
             <?php include("AdminNav.php"); ?>
             <div class="card">
                 <div class="card-header">
-                    Disapprove Booking
+                    Approve Booking
                 </div>
                 <div class="card-body">
                     <?php
                     $aid = $_GET['aid_id'];
                     if ($aid) {
-                        $ret = "SELECT * FROM guest_bookings WHERE book_id=?";
+                        $ret = "SELECT * FROM guest_bookings WHERE aid_id=?";
                         $stmt = $conn->prepare($ret);
                         $stmt->bind_param('i', $aid);
                         $stmt->execute();
@@ -94,7 +105,7 @@
                             <label for="exampleInputEmail1">Booking Status</label>
                             <input type="text" readonly value="<?php echo htmlspecialchars($row->status); ?>" class="form-control" id="exampleInputEmail1" name="bStatus">
                         </div>
-                        <button type="submit" name="disapprove_booking" class="btn badge-danger">Disapprove booking</button>
+                        <button type="submit" name="approve_booking" class="btn btn-success">Approve booking</button>
                     </form>
                     <?php
                         } else {
