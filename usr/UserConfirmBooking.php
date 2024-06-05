@@ -58,9 +58,9 @@
                             $to = $getMatchEmail;
                             $headers = "Content-Type: text/html; charset=UTF-8\r\n";
                             $subject = "Book Success!";
-                            $message = "You just booked!<br>";
+                            $message = "You just booked!<br> For more concern Contact us! #<b>0999999</b>";
                             mail($to, $subject, $message, $headers);
-                            header("Location: UserDashBoard.php");
+                            header("Location: UserBookVehicle.php");
                             exit();
                         } else {
                             echo "Error: " . mysqli_error($conn);

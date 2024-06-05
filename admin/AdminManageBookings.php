@@ -1,6 +1,6 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
-    $getStatus = $_GET['status'];
+    $getStatus = isset($_GET['status']) ? $_GET['status'] : '';
     /*
         Note*
         Add the nav bar for the dashboards with the logout feature
@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage bookings</title>
-    <link rel="stylesheet" href="adminCss\adminstyle.css">
+    <link rel="stylesheet" href="adminCss\adminstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
 
@@ -27,63 +27,58 @@
     <div id="wrapper">
         <div id="content-wrapper">
             <?php include("AdminNav.php"); ?>
+            
+            <div class="form-group">
+                <label for="statusFilter">Filter by Status:</label>
+                <select id="statusFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Approved" <?php if($getStatus == 'Approved') echo 'selected'; ?>>Approved</option>
+                    <option value="Disapproved" <?php if($getStatus == 'Disapproved') echo 'selected'; ?>>Disapproved</option>
+                    <option value="Pending" <?php if($getStatus == 'Pending') echo 'selected'; ?>>Pending</option>
+                    <option value="Cancelled" <?php if($getStatus == 'Cancelled') echo 'selected'; ?>>Cancelled</option>
+                </select>
+            </div>
             <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-table"></i> <?php echo $getStatus;?>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Contact</th>
-                                        <th>Preferred Vehicle</th>
-                                        <th>Pickup Location</th>
-                                        <th>Destination</th>
-                                        <th>Travel Date/Time</th>
-                                        <th>Status</th>
-                                        <?php
-                                            if($getStatus == 'Disapproved' || $getStatus == 'Cancelled') {
-
-
-                                            } else {
-                                        
-                                        ?>
-                                        <th>Manage</th>
-                                        <?php 
-                                            }
-                                        
-                                        ?>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $ret;
-                                    if($getStatus == 'Approved') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Approved'";
-
-                                    } else if($getStatus == 'Disapproved') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Disapproved'";
-
-                                    } else if($getStatus == 'Pending') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Pending'";
-                                        
-                                    } else if($getStatus == 'Cancelled') {
-                                        $ret = "SELECT * FROM bookinglist WHERE status = 'Cancelled'";
-                                        
+                <div class="card-header">
+                    <i class="fas fa-table"></i> <?php echo $getStatus == '' ? 'All Bookings' : 'Manage ' . $getStatus . ' Bookings'; ?>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>#</th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Preferred Vehicle</th>
+                                    <th>Pickup Location</th>
+                                    <th>Destination</th>
+                                    <th>Travel Date/Time</th>
+                                    <th>Status</th>
+                                    <th>Manage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                <?php
+                                    
+                                    $sql = "SELECT * FROM bookinglist";
+                                    if (!empty($getStatus)) {
+                                        $sql .= " WHERE status = '$getStatus'";
                                     }
 
-                                    //$ret = "SELECT * FROM bookinglist WHERE status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled' OR status = 'Approved'";
-                                    $stmt = $conn->prepare($ret);
+                                 
+                                    $stmt = $conn->prepare($sql);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     $cnt = 1;
+
                                     while ($row = $res->fetch_object()) {
-                                    ?>
+                                        ?>
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
                                             <td><?php echo $row->book_id; ?></td>
@@ -140,18 +135,32 @@
                                         
                                     ?>
                                 </tbody>
-                            </table>
-                        </div>
+                        </table>
                     </div>
-                    <div class="card-footer small text-muted">
-                        <?php
+                </div>
+                <div class="card-footer small text-muted">
+                    <?php
                         date_default_timezone_set("Asia/Manila");
                         echo "Generated : " . date("h:i:sa");
-                        ?>
-                    </div>
+
+
+                    ?>
+                </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        
+        $(document).ready(function() {
+            $('#statusFilter').change(function() {
+                
+                var status = $(this).val();
+                
+                window.location.href = 'AdminManageBookings.php?status=' + status;
+            });
+        });
+    </script>
     
 </body>
 </html>

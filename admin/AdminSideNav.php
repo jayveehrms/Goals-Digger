@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="adminCss\adminstyle.css">
+    <link rel="stylesheet" href="adminCss/adminNavStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
 
@@ -24,10 +24,7 @@
             <div class="item">
                 <a href="#" class="sub-btn"><i class="fas fa-fw fa-book"></i>Manage Bookings<i class="fas fa-angle-right dropdown"></i></a>
                 <div class="sub-menu">
-                    <a href="AdminManageBookings.php?status=<?php echo "Approved";?>" class="sub-item">Manage Approved</a>
-                    <a href="AdminManageBookings.php?status=<?php echo "Disapproved";?>" class="sub-item">Manage Disapproved</a>
-                    <a href="AdminManageBookings.php?status=<?php echo "Pending";?>" class="sub-item">Manage Pending</a>
-                    <a href="AdminManageBookings.php?status=<?php echo "Cancelled";?>" class="sub-item">Manage Cancelled</a>
+                    <a href="AdminManageBookings.php" class="sub-item">Manage Bookings</a>
                     <a href="AdminGuestBookings.php" class="sub-item">Manage Guest</a>
                 </div>
             </div>

@@ -1,13 +1,32 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
-    /*
-        Note* 
-        next feature to add would be the loyalty for regular and new users
-        limit the amount of bookings a user can add based on their loyalty badges and status rank
-        /For other features look into our group chat or ask team members
+    $bookingData = array();
+  
+    $bookingListResult = $conn->query("SELECT DATE_FORMAT(time_stamp, '%M') AS month, COUNT(*) AS count FROM bookinglist GROUP BY MONTH(time_stamp)");
+    while ($row = $bookingListResult->fetch_assoc()) {
+        $bookingData[$row['month']] = $row['count'];
+    }
+    
+    
+    $guestBookingsResult = $conn->query("SELECT DATE_FORMAT(time_stamp, '%M') AS month, COUNT(*) AS count FROM guest_bookings GROUP BY MONTH(time_stamp)");
+    while ($row = $guestBookingsResult->fetch_assoc()) {
+        if (isset($bookingData[$row['month']])) {
+            $bookingData[$row['month']] += $row['count'];
+        } else {
+            $bookingData[$row['month']] = $row['count'];
+        }
+    }
 
-    */
+    
+    $labels = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    $values = array();
+
+    foreach ($labels as $month) {
+        $count = isset($bookingData[$month]) ? $bookingData[$month] : 0;
+        $values[] = $count;
+    }
+    
 
 ?>
 <!DOCTYPE html>
@@ -16,86 +35,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin dashboard</title>
-    <link rel="stylesheet" href="adminCss\adminstyle.css">
+    <link rel="stylesheet" href="adminCss\adminstyles.css">
+    <link rel="stylesheet" href="adminCss\adminNavStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 </head>
 <body>
+    
     <?php include("AdminSideNav.php"); ?>
     <div id="wrapper">
         <div id="content-wrapper">
             <?php include("AdminNav.php"); ?>
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-table"></i> Bookings
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Contact</th>
-                                    <th>Preferred Vehicle</th>
-                                    <th>Pickup Location</th>
-                                    <th>Destination</th>
-                                    <th>Travel Date/Time</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $ret = "SELECT * FROM bookinglist WHERE status = 'Approved' OR status = 'Pending' OR status = 'Disapproved' OR status = 'Cancelled'";
-                                $stmt = $conn->prepare($ret);
-                                $stmt->execute();
-                                $res = $stmt->get_result();
-                                $cnt = 1;
-                                while ($row = $res->fetch_object()) {
-                                ?>
-                                    <tr>
-                                        <td><?php echo $cnt; ?></td>
-                                        <td><?php echo $row->book_id; ?></td>
-                                        <td><?php echo $row->username; ?></td>
-                                        <td><?php echo $row->email; ?></td>
-                                        <td><?php echo $row->mobile_number; ?></td>
-                                        <td><?php echo $row->preferred_vehicle; ?></td>
-                                        <td><?php echo $row->pickup_location; ?></td>
-                                        <td><?php echo $row->destination; ?></td>
-                                        <td><?php echo $row->travel_date_time; ?></td>
-                                        <td>
-                                            <?php 
-                                            if ($row->status == "Pending") { 
-                                                echo '<span class="badge badge-warning">' . $row->status . '</span>'; 
 
-                                            } else if ($row->status == "Disapproved"){
-                                                echo '<span class="badge badge-dark">' . $row->status . '</span>';
-
-                                            } else if ($row->status == "Cancelled"){
-                                                echo '<span class="badge badge-warning">' . $row->status . '</span>';
-                                            }else { 
-                                                echo '<span class="badge badge-success">' . $row->status . '</span>'; 
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                <?php $cnt++; } ?>
-                            </tbody>
-                        </table>
+            <div class="card-container">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-users"></i>
+                        </div>
+                        <?php
+                        $result ="SELECT count(*) FROM emberusers";
+                        $stmt = $conn->prepare($result);
+                        $stmt->execute();
+                        $stmt->bind_result($user);
+                        $stmt->fetch();
+                        $stmt->close();
+                        ?>
+                        <div class="mr-5"><span class="badge badge-light"><?php echo $user;?></span> Users</div>
                     </div>
+                    <a class="card-footer text-white clearfix small z-1" href="admin-view-user.php">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fas fa-angle-right"></i>
+                        </span>
+                    </a>
                 </div>
-                <div class="card-footer small text-muted">
-                    <?php
-                    date_default_timezone_set("Asia/Manila");
-                    echo "Generated : " . date("h:i:sa");
-                    ?>
+
+                <div class="card text-white bg-success o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-bus"></i>
+                        </div>
+                        <?php
+                        $result ="SELECT count(*) FROM embervehicles";
+                        $stmt = $conn->prepare($result);
+                        $stmt->execute();
+                        $stmt->bind_result($vehicle);
+                        $stmt->fetch();
+                        $stmt->close();
+                        ?>
+                        <div class="mr-5"><span class="badge badge-light"><?php echo $vehicle;?></span> Vehicles</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="admin-view-vehicle.php">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fas fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="card text-white bg-warning o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-address-book"></i>
+                        </div>
+                        <?php
+                        $result ="SELECT 
+                                  (SELECT COUNT(*) FROM bookinglist WHERE status = 'Approved' OR status = 'Pending') 
+                                  + 
+                                  (SELECT COUNT(*) FROM guest_bookings WHERE status = 'Approved' OR status = 'Pending') 
+                                  AS total_approved_or_pending;";
+                        $stmt = $conn->prepare($result);
+                        $stmt->execute();
+                        $stmt->bind_result($book);
+                        $stmt->fetch();
+                        $stmt->close();
+                        ?>
+                        <div class="mr-5"><span class="badge badge-light"><?php echo $book;?></span> Bookings</div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="admin-view-booking.php">
+                        <span class="float-left">View Details</span>
+                        <span class="float-right">
+                            <i class="fas fa-angle-right"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
+
+            <div>
+              <canvas id="myChart" height="100"></canvas>
+            </div>
+
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      
+      const ctx = document.getElementById('myChart').getContext('2d');
+
+      const d = new Date();
+      const currentYear = d.getFullYear(); 
+      new Chart(ctx, {
+        type: 'bar', 
+        data: {
+          labels: <?php echo json_encode($labels); ?>, 
+          datasets: [{
+            label: 'Bookings(' + currentYear + ')', 
+            data: <?php echo json_encode($values); ?>, 
+            backgroundColor: 'rgba(255, 196, 60, 0.8)', 
+            borderColor: 'rgba(234, 163, 0, 0.8)', 
+            borderWidth: 1 
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true, 
+              suggestedMax: 10 
+            }
+          }
+        }
+      });
+    </script>
     
 </body>
 </html>

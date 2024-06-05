@@ -146,14 +146,16 @@
                             <i class="fa fa-lock icon"></i>
                             <input class="input-field password" type="password" placeholder="Password" name="password" required>
                             <i class="fa fa-eye icon toggle"></i>
+                        
                         </div>
 
                         <div class="input-container">
                             <i class="fa fa-lock icon"></i>
                             <input class="input-field" type="password" placeholder="Confirm Password" name="cpass" required>
                             <i class="fa fa-eye icon toggle"></i>
+                            
                         </div>
-
+                        <p id="password-requirements">Must have at least one uppercase,lowercase,number,special character.</p>
                         <input type="submit" name="register" id="submit" value="Signup" class="btn">
                         <br>
                         <p style="color: black;" >By submitting this form, you agree to our <a style="color: blue;" href="terms.php">Terms & Conditions</a> and <a style="color: blue;" href="privacy-policy.php">Privacy Policy.</a></p>
@@ -224,6 +226,21 @@
             document.querySelectorAll('section').forEach(el => el.classList.add('dimmed'));
         }
     });
+
+    document.querySelector(".signup-form form").addEventListener("submit", function(event) {
+        const password = document.querySelector("input[name='password']").value;
+        const confirmPassword = document.querySelector("input[name='cpass']").value;
+        const passwordRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+        if (!password.match(passwordRequirements)) {
+            event.preventDefault(); 
+            document.getElementById('xPass').textContent = "Invalid Password";
+        } else if (password !== confirmPassword) {
+            event.preventDefault(); 
+            document.getElementById('xPass').textContent = "Passwords don't match!";
+        }
+    });
+
 </script>
 
 <!-- Navigation JS -->
@@ -232,6 +249,7 @@
     document.getElementById('menu-icon').addEventListener('click', function() {
         document.querySelector('.navbar').classList.toggle('active');
     });
+    
 </script>
 
 </body>

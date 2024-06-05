@@ -1,58 +1,60 @@
 <?php 
     include("..\PhpHandler\DBconnect.php");
 
+    $maxBookingsReached = false;
+    $passwordRequirementsNotMet = false;
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['adduser'])) {
             $newUsername = mysqli_real_escape_string($conn, $_POST['userName']);
             $newEmail = mysqli_real_escape_string($conn, $_POST['email']);
             $newPass = mysqli_real_escape_string($conn, $_POST['password']);
-            $hashNPass = password_hash($newPass, PASSWORD_DEFAULT);
             $newContact = mysqli_real_escape_string($conn, $_POST['contact']);
             $userType = $_POST['uType'];
-    
-            $findEmailAdmin = "SELECT * FROM emberadmin WHERE email = '$newEmail'";
-            $findEmailUser = "SELECT * FROM emberusers WHERE email = '$newEmail'";
-    
-            $resultAdmin = mysqli_query($conn, $findEmailAdmin);
-            $resultUser = mysqli_query($conn, $findEmailUser);
-    
-            if (mysqli_num_rows($resultAdmin) > 0 || mysqli_num_rows($resultUser) > 0) {
-                //To be modified, for when the email already exists in the database
-                $maxBookingsReached = true;
 
+            $passwordRequirements = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
+            if (!preg_match($passwordRequirements, $newPass)) {
+                $passwordRequirementsNotMet = true;
             } else {
-                
-                if ($userType == 'Admin') {
-                    $insertAdmin = "INSERT INTO emberadmin (username, email, password, contact)
-                                    VALUES ('$newUsername', '$newEmail', '$hashNPass', '$newContact')";
-                    
-                    if (mysqli_query($conn, $insertAdmin)) {
-                        header("Location: AdminDashBoard.php");
-                        exit();
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
-                    }
-                } else if ($userType == 'Regular') {
-                    $insertUser = "INSERT INTO emberusers (username, email, password, contact)
-                                    VALUES ('$newUsername', '$newEmail', '$hashNPass', '$newContact')";
-                    
-                    if (mysqli_query($conn, $insertUser)) {
-                        header("Location: AdminDashBoard.php");
-                        exit();
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
+                $hashNPass = password_hash($newPass, PASSWORD_DEFAULT);
+
+                $findEmailAdmin = "SELECT * FROM emberadmin WHERE email = '$newEmail'";
+                $findEmailUser = "SELECT * FROM emberusers WHERE email = '$newEmail'";
+
+                $resultAdmin = mysqli_query($conn, $findEmailAdmin);
+                $resultUser = mysqli_query($conn, $findEmailUser);
+
+                if (mysqli_num_rows($resultAdmin) > 0 || mysqli_num_rows($resultUser) > 0) {
+                    $maxBookingsReached = true;
+                } else {
+                    if ($userType == 'Admin') {
+                        $insertAdmin = "INSERT INTO emberadmin (username, email, password, contact)
+                                        VALUES ('$newUsername', '$newEmail', '$hashNPass', '$newContact')";
+
+                        if (mysqli_query($conn, $insertAdmin)) {
+                            header("Location: AdminDashBoard.php");
+                            exit();
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
+                        }
+                    } else if ($userType == 'Regular') {
+                        $insertUser = "INSERT INTO emberusers (username, email, password, contact)
+                                        VALUES ('$newUsername', '$newEmail', '$hashNPass', '$newContact')";
+
+                        if (mysqli_query($conn, $insertUser)) {
+                            header("Location: AdminDashBoard.php");
+                            exit();
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
+                        }
                     }
                 }
             }
         }
 
-        if (isset($_POST['maxBadge'])) {
-            header("Location: AdminDashBoard.php");
-            exit();
-        }
-
+        
     }
-
 
 ?>
 
@@ -69,7 +71,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
 
-    <!-- Add this script to show the popup -->
     <script>
         <?php if ($emailExists): ?>
         $(document).ready(function() {
@@ -128,24 +129,37 @@
         </form>
     </div>
 
+    <div class="popup" id="passwordRequirementsPopup">
+        <form>
+            <img src="../images/veriPIE Images/close.gif">
+            <h2>Invalid Password</h2>
+            <p>Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
+            <button type="button" onclick="closePopup('passwordRequirementsPopup')">OK</button>
+        </form>
+    </div>
+
     <script>
         function openPopup(popupId) {
-            document.getElementById(popupId).classList.add("open-popup");
+        document.getElementById(popupId).classList.add("open-popup");
         }
 
         function closePopup(popupId) {
             document.getElementById(popupId).classList.remove("open-popup");
         }
+
         <?php if ($maxBookingsReached): ?>
             document.addEventListener("DOMContentLoaded", function() {
-            openPopup("maxBookingsPopup");
+                openPopup("maxBookingsPopup");
+            });
+        <?php endif; ?>
 
-        });
+        <?php if ($passwordRequirementsNotMet): ?>
+            document.addEventListener("DOMContentLoaded", function() {
+                openPopup("passwordRequirementsPopup");
+            });
+        <?php endif; ?>
 
-        <?php 
-            endif; 
         
-        ?>
     </script>
     
 </body>
