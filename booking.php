@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php include("UI/header.php"); ?>    
-    <!-- Booking page HTML structure -->
+    
 <section class="booking">
     <form method="POST">
         <div class="booking_system-container">

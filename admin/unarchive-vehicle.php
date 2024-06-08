@@ -8,7 +8,7 @@
         $v_type = mysqli_real_escape_string($conn, $_POST['vType']);
         $v_status = mysqli_real_escape_string($conn, $_POST['vStatus']);
 
-        $queryUpdate = "UPDATE embervehicles SET v_name='$v_name', v_reg_no='$v_reg_no', v_type='$v_type', v_status='$v_status' WHERE v_id='$v_id'";
+        $queryUpdate = "UPDATE embervehicles SET v_status='$v_status' WHERE v_id='$v_id'";
         $vUpdate = mysqli_query($conn, $queryUpdate);
 
         if ($vUpdate) {
@@ -16,7 +16,7 @@
         } else {
             echo "Something WRONG!";
         }
-        mysqli_close($vUpdate);
+      
 
 
     }
@@ -28,7 +28,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminCss\adminView.css">
-    <title>Update Vehicle</title>
+    <title>Unarchive Vehicle</title>
 </head>
 <body>
     <?php include("AdminSideNav.php"); ?>
@@ -37,7 +37,7 @@
                 <?php include("AdminNav.php"); ?>
             <div class="card">
                     <div class="card-header">
-                    Update Vehicle
+                    Unarchive Vehicle
                     </div>
                     <div class="card-body">
                         <?php
@@ -73,7 +73,7 @@
                                         </select>
                                 </div>
 
-                                <button type="submit" name="updateVehicle" class="btn btn-success">Update status</button>
+                                <button type="submit" name="updateVehicle" class="btn badge-warning"><b>Unarchive</b></button>
                             </form>
 
                         <?php 

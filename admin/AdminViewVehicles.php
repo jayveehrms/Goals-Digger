@@ -35,6 +35,7 @@
                                             <th>Type</th>
                                             <th>Status</th>
                                             <th>Reason/Fault</th>
+                                            <th>Manage</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,6 +61,7 @@
                                                         }?>
                                                 </td>
                                                 <td><?php echo $row->fault_archive; ?></td>
+                                                <td><a href="unarchive-vehicle.php?v_id=<?php echo $row->v_id;?>" class="badge badge-success">Update</a></td>
                                             </tr>
                                         <?php $cnt++; } ?>
                                     </tbody>
