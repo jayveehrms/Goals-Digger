@@ -143,17 +143,15 @@
                         </div>
 
                         <div class="input-container">
-                            <i class="fa fa-lock icon"></i>
-                            <input class="input-field password" type="password" placeholder="Password" name="password" required>
-                            <i class="fa fa-eye icon toggle"></i>
-                        
+                        <i class="fa fa-lock icon"></i>
+                        <input class="input-field password" type="password" placeholder="Password" name="password" required>
+                        <i class="fa fa-eye icon toggle" id="togglePassword"></i>
                         </div>
 
                         <div class="input-container">
                             <i class="fa fa-lock icon"></i>
-                            <input class="input-field" type="password" placeholder="Confirm Password" name="cpass" required>
-                            <i class="fa fa-eye icon toggle"></i>
-                            
+                            <input class="input-field confirmPassword" type="password" placeholder="Confirm Password" name="cpass" required>
+                            <i class="fa fa-eye icon toggle" id="toggleConfirmPassword"></i>
                         </div>
                         <p id="password-requirements">Must have at least one uppercase,lowercase,number,special character.</p>
                         <input type="submit" name="register" id="submit" value="Signup" class="btn">
@@ -181,14 +179,29 @@
 
 <!-- For View Password -->
 <script>
-    const toggle = document.querySelector(".toggle"),
-          input = document.querySelector(".password");
-    toggle.addEventListener("click", () => {
-        if (input.type === "password") {
-            input.type = "text";
-            toggle.classList.replace("fa-eye-slash", "fa-eye");
+    const togglePassword = document.querySelector("#togglePassword");
+    const passwordInput = document.querySelector(".password");
+
+    togglePassword.addEventListener("click", () => {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            togglePassword.classList.replace("fa-eye", "fa-eye-slash");
         } else {
-            input.type = "password";
+            passwordInput.type = "password";
+            togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+        }
+    });
+
+    const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
+    const confirmPasswordInput = document.querySelector(".confirmPassword");
+
+    toggleConfirmPassword.addEventListener("click", () => {
+        if (confirmPasswordInput.type === "password") {
+            confirmPasswordInput.type = "text";
+            toggleConfirmPassword.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+            confirmPasswordInput.type = "password";
+            toggleConfirmPassword.classList.replace("fa-eye-slash", "fa-eye");
         }
     });
 
