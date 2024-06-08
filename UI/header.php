@@ -153,7 +153,7 @@
                             <input class="input-field confirmPassword" type="password" placeholder="Confirm Password" name="cpass" required>
                             <i class="fa fa-eye icon toggle" id="toggleConfirmPassword"></i>
                         </div>
-                        <p id="password-requirements">Must have at least one uppercase,lowercase,number,special character.</p>
+                        <p id="password-requirements"></p>
                         <input type="submit" name="register" id="submit" value="Signup" class="btn">
                         <br>
                         <p style="color: black;" >By submitting this form, you agree to our <a style="color: blue;" href="terms.php">Terms & Conditions</a> and <a style="color: blue;" href="privacy-policy.php">Privacy Policy.</a></p>
@@ -247,10 +247,10 @@
 
         if (!password.match(passwordRequirements)) {
             event.preventDefault(); 
-            document.getElementById('xPass').textContent = "Invalid Password";
+            alert("Password must have at least one uppercase letter, one lowercase letter, one number, and one special character.");
         } else if (password !== confirmPassword) {
             event.preventDefault(); 
-            document.getElementById('xPass').textContent = "Passwords don't match!";
+            alert("Passwords don't match!");
         }
     });
 
