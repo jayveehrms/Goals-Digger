@@ -20,6 +20,7 @@
         <div class="ember-preview-container active">
             <section class="home" id="home">
                 <div class="text">
+                    
                     <h1><span>Welcome</span> to <br>Ember Transport Services</h1>
                     <p>Your journey matters to us. We are committed to providing<br> you with reliable, efficient, and top-quality transport services. <br> Hop on, and let us take you to your destination!</p><br>
                     <div class="home-btn">
@@ -186,7 +187,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="Images/Cars/sample-car_Toyota_GL_Grandia.png" alt="Toyota GL Grandia">
+                    <img src="Images\Cars\sample-car_Toyota_GL_Grandia2.png" alt="Toyota GL Grandia">
                 </div>
                 <h3>Toyota GL Grandia</h3>
                 <p>For those seeking practicality and comfort, the Toyota GL Grandia delivers with its spacious cabin, versatile seating configurations, and dependable performance, making it the ultimate choice for family outings and group travels.</p>
@@ -301,7 +302,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="Images/Cars/sample-car_Toyota-Altis.png" style="width: 350px; height: 200px;" alt="Toyota Altis">
+                    <img src="Images/Cars/sample-car_Toyota-Altis.png" id="renderImage" alt="Toyota Altis">
                 </div>
                 <h3>Toyota Altis</h3>
                 <p>Sleek and stylish, the Toyota Altis offers a refined driving experience with its elegant design, efficient performance, and advanced technology, making it the perfect sedan for those who prioritize both form and function.</p>
@@ -324,7 +325,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="Images/Cars/sample-car_Toyota-Vios.png" style="width: 400px; height: 180px;" alt="Toyota Vios">
+                    <img src="Images/Cars/sample-car_Toyota-Vios2.png" alt="Toyota Vios">
                 </div>
                 <h3>Toyota Vios</h3>
                 <p>Navigate city streets with ease in the Toyota Vios, featuring agile handling, fuel-efficient performance, and a range of smart features designed to enhance your urban driving experience.</p>
